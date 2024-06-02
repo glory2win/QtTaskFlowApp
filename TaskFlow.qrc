@@ -1,7 +1,5 @@
 <RCC>
     <qresource prefix="/">
-        <file>fonts/IrishGrover-Regular.ttf</file>
-        <file>fonts/Itim-Regular.ttf</file>
         <file>images/TaskFlowAppTitle.png</file>
     </qresource>
 </RCC>
