@@ -21,12 +21,14 @@ TaskFlow::TaskFlow(QWidget *parent)
     ui.settingsBtn->setIcon(settingsIcon);
     ui.settingsBtn->setIconSize(QSize(32, 32));
     ui.settingsBtn->setText("");
+    ui.settingsBtn->setFlat(false);
 
     const QPixmap listOptionsPixmap(":/images/menu.png");
     const QIcon listOptionsIcon(listOptionsPixmap);
     ui.listOptionsBtn->setIcon(listOptionsIcon);
     ui.listOptionsBtn->setIconSize(QSize(32, 32));
     ui.listOptionsBtn->setText("");
+    ui.listOptionsBtn->setFlat(false);
 
     // IMP: When setting up the font with "Arial" kind of notation in QFont will query the font from the computer not from resources
     // In case of custom font, we have to load that first and then create QFont from that. To do that use QFontDatabase class

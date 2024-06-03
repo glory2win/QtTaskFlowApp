@@ -19,8 +19,21 @@ QLabel#categoryTitleLabel{
 
 /************** BUTTON SETTINGS ****************************/
 
+QPushButton#settingsBtn{
+    background-color: transparent;
+    border: 1px solid #888888;
+    border-radius: 5px;
+}
 QPushButton#settingsBtn:hover{
     background-color: #eee8df;
-    color: black;    
+}
+
+QPushButton#listOptionsBtn{
+    background-color: transparent;
+    border: 1px solid #888888;
+    border-radius: 5px;
+}
+QPushButton#listOptionsBtn:hover{
+    background-color: #eee8df;
 }
 
