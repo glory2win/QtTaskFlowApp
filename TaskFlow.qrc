@@ -5,6 +5,6 @@
         <file>images/menu.png</file>
         <file>images/star.png</file>
         <file>fonts/Itim-Regular.ttf</file>
-        <file>styles/style.qss</file>
+        <file>styles/style.css</file>
     </qresource>
 </RCC>

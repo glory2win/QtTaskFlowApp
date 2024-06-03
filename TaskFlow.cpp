@@ -4,13 +4,17 @@
 #include <QIcon>
 #include <QFontDatabase>
 
+#include "ThemeManager.h"
+
 TaskFlow::TaskFlow(QWidget *parent)
     : QWidget(parent)
 {
     ui.setupUi(this);
 
-    const QPixmap titlePixMap(":/images/TaskFlowAppTitle.png");
+    QPixmap titlePixMap(":/images/TaskFlowAppTitle.png");
     ui.appTitleLabel->setPixmap(titlePixMap);
+    ui.appTitleLabel->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
+
 
     const QPixmap settingsIconPixmap(":/images/settings.png");
     const QIcon settingsIcon(settingsIconPixmap);
@@ -47,10 +51,6 @@ TaskFlow::TaskFlow(QWidget *parent)
     {
         qWarning("Unable to get the font!");
     }
-
-    // TODO: css for UI
-
-
 }
 
 TaskFlow::~TaskFlow()

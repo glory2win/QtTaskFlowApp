@@ -1,0 +1,26 @@
+/* TaskFlow Window */
+QWidget#TaskFlowClass{
+    background-color: #C9C1B0;
+}
+
+
+/************** LABEL SETTINGS ****************************/
+/* App Title */
+QLabel#appTitleLabel {
+    background-color: #E6CD91;
+    color:black
+}
+
+/* List Options Button */
+QLabel#categoryTitleLabel{
+    color: black;
+}
+
+
+/************** BUTTON SETTINGS ****************************/
+
+QPushButton#settingsBtn:hover{
+    background-color: #eee8df;
+    color: black;    
+}
+
