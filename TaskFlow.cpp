@@ -48,6 +48,9 @@ TaskFlow::TaskFlow(QWidget *parent)
         qWarning("Unable to get the font!");
     }
 
+    // TODO: css for UI
+
+
 }
 
 TaskFlow::~TaskFlow()
