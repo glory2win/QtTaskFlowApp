@@ -3,6 +3,8 @@
 #include <QtWidgets/QWidget>
 #include "ui_TaskFlow.h"
 
+#include <QPushButton>
+
 class TaskFlow : public QWidget
 {
     Q_OBJECT
@@ -13,4 +15,5 @@ public:
 
 private:
     Ui::TaskFlowClass ui;
+    QPushButton* m_addCategoryListBtn;
 };
