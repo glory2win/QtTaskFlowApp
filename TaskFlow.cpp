@@ -49,6 +49,10 @@ TaskFlow::TaskFlow(QWidget *parent)
 		    QFont listFont(fontName, fontSize);
             ui.categoryTitleLabel->setFont(listFont);
             ui.categoryTitleLabel->setText("Groceries");
+
+            QFont inputFont(fontName, 12);
+            ui.todoItemInput->setFont(inputFont);
+            ui.todoItemInput->setPlaceholderText(QString("Enter your task here.."));
 	    }
 	    else
 	    {
