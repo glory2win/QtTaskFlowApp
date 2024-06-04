@@ -37,3 +37,11 @@ QPushButton#listOptionsBtn:hover{
     background-color: #eee8df;
 }
 
+QPushButton#addCategoryListBtn{
+    background-color: transparent;
+    border: 1px solid #888888;
+    border-radius: 5px;
+}
+QPushButton#addCategoryListBtn:hover{
+    background-color: #eee8df;
+}

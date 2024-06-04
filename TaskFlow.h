@@ -15,5 +15,4 @@ public:
 
 private:
     Ui::TaskFlowClass ui;
-    QPushButton* m_addCategoryListBtn;
 };

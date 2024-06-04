@@ -29,9 +29,12 @@ TaskFlow::TaskFlow(QWidget *parent)
     ui.listOptionsBtn->setText("");
     ui.listOptionsBtn->setFlat(false);
 
-    // Adding widgets to UI
-    m_addCategoryListBtn = new QPushButton(this);
-    ui.gridLayout->addWidget(m_addCategoryListBtn, 1, 0);
+    const QPixmap categoryBtnPixmap(":/images/new_category.png");
+    const QIcon categoryBtnIcon(categoryBtnPixmap);
+    ui.addCategoryListBtn->setIcon(categoryBtnIcon);
+    ui.addCategoryListBtn->setIconSize(QSize(48, 48));
+    ui.addCategoryListBtn->setText("");
+    ui.addCategoryListBtn->setFlat(false);
 
     // IMP: When setting up the font with "Arial" kind of notation in QFont will query the font from the computer not from resources
     // In case of custom font, we have to load that first and then create QFont from that. To do that use QFontDatabase class
