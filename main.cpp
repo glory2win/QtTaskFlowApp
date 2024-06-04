@@ -1,4 +1,10 @@
+#define USE_TEST_WIDGET
+
+#ifdef USE_TEST_WIDGET
+#include "TestWidget.h"
+#else
 #include "TaskFlow.h"
+#endif
 
 #include <QtWidgets/QApplication>
 #include <QString>
@@ -8,6 +14,14 @@
 int main(int argc, char* argv[])
 {
 	QApplication app(argc, argv);
+
+#ifdef USE_TEST_WIDGET
+	TestWidget testWidget;
+	testWidget.show();
+
+#else
+
+
 	TaskFlow flowWindow;
 
 	// TODO: Read the config file see what is current theme and apply that here
@@ -35,6 +49,10 @@ int main(int argc, char* argv[])
 		break;
 	}
 
+	flowWindow.setFixedSize(1024, 768);
 	flowWindow.show();
+
+#endif
+
 	return app.exec();
 }

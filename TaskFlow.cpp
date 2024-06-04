@@ -5,6 +5,8 @@
 #include <QFontDatabase>
 #include <QMessageBox>
 
+#include "CategoryListItem.h"
+#include <QListWidgetItem>
 #include "ThemeManager.h"
 
 TaskFlow::TaskFlow(QWidget *parent)
@@ -73,6 +75,25 @@ void TaskFlow::setupUi() const
     {
         qWarning("Unable to get the font!");
     }
+
+    // Test - Create Category List items
+    for(auto i=0; i < 5; ++i)
+    {
+        // 1. Instantiate the custom widget.
+        CategoryListItem* item = new CategoryListItem(ui.categoryList);
+        // 2. In Qt, QListItemWidget is container that accepts the custom widget, this item widget is needed for list widget.
+        QListWidgetItem* listItem = new QListWidgetItem(ui.categoryList);
+        // 3. Set size hint to match custom widget
+        listItem->setSizeHint(item->sizeHint());
+        // 4. Now set the custom widget as item widget
+        ui.categoryList->setItemWidget(listItem, item);
+        ui.categoryList->addItem(listItem);
+
+        /*QListWidgetItem* item = new QListWidgetItem("varma",ui.categoryList);
+        ui.categoryList->addItem(item);*/
+    }
+
+
 }
 
 void TaskFlow::connectUi()
@@ -93,6 +114,8 @@ void TaskFlow::onSettingBtnPressed()
 void TaskFlow::onListOptionBtnPressed()
 {
     qDebug() << "[List Options] - List Options button pressed " << __FUNCTION__;
+
+    // Create label
 
 }
 

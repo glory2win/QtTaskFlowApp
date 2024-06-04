@@ -1,7 +1,19 @@
 #pragma once
 
+#include <QLabel>
 #include <QWidget>
 #include "ui_TestWidget.h"
+
+class TestListItem : public QWidget
+{
+public:
+	TestListItem(QWidget* parent);
+	~TestListItem() = default;
+
+private:
+	QLabel* m_iconLabel;
+	QLabel* m_label;
+};
 
 class TestWidget : public QWidget
 {

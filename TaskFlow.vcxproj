@@ -103,6 +103,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="CategoryListItem.cpp" />
+    <ClCompile Include="TestWidget.cpp" />
     <ClCompile Include="ThemeManager.cpp" />
     <QtRcc Include="TaskFlow.qrc" />
     <QtUic Include="TaskFlow.ui" />
@@ -110,9 +112,12 @@
     <ClCompile Include="TaskFlow.cpp" />
     <ClCompile Include="main.cpp" />
     <None Include="TaskFlow.ico" />
+    <QtUic Include="TestWidget.ui" />
     <ResourceCompile Include="TaskFlow.rc" />
   </ItemGroup>
   <ItemGroup>
+    <QtMoc Include="CategoryListItem.h" />
+    <QtMoc Include="TestWidget.h" />
     <ClInclude Include="ThemeManager.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
