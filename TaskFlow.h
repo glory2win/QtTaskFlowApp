@@ -13,6 +13,13 @@ public:
     TaskFlow(QWidget *parent = nullptr);
     ~TaskFlow();
 
+private slots:
+    void onSettingBtnPressed();
+    void onListOptionBtnPressed();
+    void onAddCategoryBtnPressed();
+
 private:
     Ui::TaskFlowClass ui;
+    void setupUi() const;
+    void connectUi();
 };
