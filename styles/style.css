@@ -45,3 +45,26 @@ QPushButton#addCategoryListBtn{
 QPushButton#addCategoryListBtn:hover{
     background-color: #eee8df;
 }
+
+
+/************** LIST SETTINGS ****************************/
+QListWidget#categoryList{
+    background-color: #E6E0C5;
+    border: 1px solid #888888;
+    border-radius: 5px;
+}
+
+QListWidget#todoList{
+    background-color: #5A5751;
+    border: 1px solid #888888;
+    border-radius: 5px;
+}
+
+/************** LINEEDIT SETTINGS ****************************/
+QLineEdit#todoItemInput{
+    background-color: #42403c;
+    border: 1px solid #888888;
+    border-radius: 5px;
+    text-align: left;
+    color: white;
+}

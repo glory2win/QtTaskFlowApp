@@ -51,7 +51,11 @@
       </widget>
      </item>
      <item>
-      <widget class="QListWidget" name="categoryList"/>
+      <widget class="QListWidget" name="categoryList">
+       <property name="frameShape">
+        <enum>QFrame::NoFrame</enum>
+       </property>
+      </widget>
      </item>
      <item>
       <layout class="QHBoxLayout" name="horizontalLayout_2">
@@ -206,7 +210,7 @@
      <item>
       <widget class="QListWidget" name="todoList">
        <property name="frameShape">
-        <enum>QFrame::StyledPanel</enum>
+        <enum>QFrame::NoFrame</enum>
        </property>
       </widget>
      </item>
