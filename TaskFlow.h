@@ -10,8 +10,8 @@ class TaskFlow : public QWidget
     Q_OBJECT
 
 public:
-    TaskFlow(QWidget *parent = nullptr);
-    ~TaskFlow();
+    explicit TaskFlow(QWidget *parent = nullptr);
+    ~TaskFlow() override = default;
 
 private slots:
     void onSettingBtnPressed();

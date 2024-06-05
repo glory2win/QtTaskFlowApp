@@ -1,4 +1,4 @@
-#define USE_TEST_WIDGET
+// #define USE_TEST_WIDGET
 
 #ifdef USE_TEST_WIDGET
 #include "TestWidget.h"
