@@ -20,8 +20,7 @@ int main(int argc, char* argv[])
 
 #else
 
-	ThemeManager themeManager;
-	themeManager.loadTheme(app);
+	ThemeManager::instance().loadTheme(app);
 
 	TaskFlow flowWindow;
 	flowWindow.setFixedSize(1024, 768);

@@ -46,10 +46,10 @@ void TaskFlow::setupUi() const
 
 	// Getting fonts from Theme manager
 
-	ui.categoryTitleLabel->setFont(ThemeManager::titleFont());
+	ui.categoryTitleLabel->setFont(ThemeManager::instance().titleFont());
 	ui.categoryTitleLabel->setText("Groceries");
 
-	ui.todoItemInput->setFont(ThemeManager::itemFont());
+	ui.todoItemInput->setFont(ThemeManager::instance().itemFont());
 	ui.todoItemInput->setPlaceholderText(QString("Enter your task here.."));
 }
 

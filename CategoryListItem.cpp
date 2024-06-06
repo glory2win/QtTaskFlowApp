@@ -8,7 +8,7 @@
 #pragma region LINE_EDIT
 CategoryLineEdit::CategoryLineEdit(QWidget* parent): QLineEdit(parent)
 {
-	this->setFont(ThemeManager::titleFont());
+	this->setFont(ThemeManager::instance().titleFont());
 	this->setText("Untitled");
 }
 

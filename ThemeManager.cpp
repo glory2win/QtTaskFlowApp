@@ -5,8 +5,6 @@
 #include <QMessageBox>
 #include <QFontDatabase>
 
-ThemeManager* ThemeManager::s_instance = nullptr;
-
 ThemeManager::ThemeManager()
 {
 	// IMP: When setting up the font with "Arial" kind of notation in QFont will query the font from the computer not from resources
@@ -19,8 +17,8 @@ ThemeManager::ThemeManager()
 		{
 			const QString& fontName = fontFamilies.at(0); // Get the first one.
 
-			m_titleFont = new QFont(fontName, 28);
-			m_itemFont = new QFont(fontName, 12);
+			m_titleFont = std::make_unique<QFont>(fontName, 28);
+			m_itemFont = std::make_unique<QFont>(fontName, 12);
 		}
 		else
 		{
@@ -32,18 +30,12 @@ ThemeManager::ThemeManager()
 		qWarning("Unable to get the font!");
 	}
 
-	s_instance = this;
-
 	qDebug() << "Theme Manager has created";
 }
 
 ThemeManager::~ThemeManager()
 {
 	qDebug() << "Theme Manager has destroyed";
-	s_instance = nullptr;
-	delete m_titleFont;
-	delete m_itemFont;
-	// delete s_instance; // NOTE: Don't delete s_instance which causes running destructor again which causes font are not related error. This ~ThemeManager called from main.
 }
 
 void ThemeManager::applyStyleSheet(QApplication& app, const QString& styleSheetPath)
@@ -66,6 +58,12 @@ void ThemeManager::applyStyleSheet(QApplication& app, const QString& styleSheetP
 	}
 }
 
+/* The C++ standard grantees that the static variables can be initialize in a thread-safe manner. */
+ThemeManager& ThemeManager::instance()
+{
+	static ThemeManager instance;
+	return instance;
+}
 
 void ThemeManager::loadTheme(QApplication& app)
 {

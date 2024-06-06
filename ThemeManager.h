@@ -1,6 +1,7 @@
 #pragma once
 
-// Reads stylesheets
+#include <memory>
+
 class QApplication;
 class QString;
 class QFont;
@@ -15,23 +16,27 @@ enum class ETheme
 class ThemeManager
 {
 public:
-	ThemeManager();
-	~ThemeManager();
 
-	static QFont& titleFont() { return *s_instance->m_titleFont; }
-	static QFont& itemFont() { return *s_instance->m_itemFont; }
+	ThemeManager(const ThemeManager&) = delete;
+	ThemeManager& operator=(const ThemeManager&) = delete;
+
+	static ThemeManager& instance();
+
+	QFont& titleFont() const { return *m_titleFont; }
+	QFont& itemFont() const { return *m_itemFont; }
 
 	void loadTheme(QApplication& app);
 
 private:
+	// private ctor and dtor due to singleton can create class
+	ThemeManager();
+	~ThemeManager();
 
 	static void applyStyleSheet(QApplication& app, const QString& styleSheetPath);
 
 private:
 
-	static ThemeManager* s_instance;
-
-	QFont* m_titleFont;
-	QFont* m_itemFont;
+	std::unique_ptr<QFont> m_titleFont;
+	std::unique_ptr<QFont> m_itemFont;
 };
 
