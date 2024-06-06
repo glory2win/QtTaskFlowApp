@@ -1,10 +1,14 @@
+#include "ThemeManager.h"
 #include "CategoryListItem.h"
 
 #include <QHBoxLayout>
 
 
+
+#pragma region LINE_EDIT
 CategoryLineEdit::CategoryLineEdit(QWidget* parent): QLineEdit(parent)
 {
+	this->setFont(ThemeManager::titleFont());
 	this->setText("Untitled");
 }
 
@@ -14,6 +18,10 @@ void CategoryLineEdit::focusOutEvent(QFocusEvent* event)
 	emit focusChanged();
 }
 
+#pragma endregion LINE_EDIT
+
+
+#pragma region LIST_ITEM
 CategoryListItem::CategoryListItem(QWidget* parent) : QWidget(parent)
 {
 	m_iconLabel = new QLabel(this);
@@ -68,4 +76,4 @@ void CategoryListItem::handleLostFocus()
 	qDebug() << "Focus has lost";
 }
 
-
+#pragma endregion LIST_ITEM
