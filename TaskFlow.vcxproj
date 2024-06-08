@@ -103,7 +103,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="CategoryListItem.cpp" />
+    <ClCompile Include="CategoryList.cpp" />
     <ClCompile Include="TestWidget.cpp" />
     <ClCompile Include="ThemeManager.cpp" />
     <QtRcc Include="TaskFlow.qrc" />
@@ -116,7 +116,7 @@
     <ResourceCompile Include="TaskFlow.rc" />
   </ItemGroup>
   <ItemGroup>
-    <QtMoc Include="CategoryListItem.h" />
+    <QtMoc Include="CategoryList.h" />
     <QtMoc Include="TestWidget.h" />
     <ClInclude Include="ThemeManager.h" />
   </ItemGroup>

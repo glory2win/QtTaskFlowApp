@@ -22,7 +22,7 @@ public:
 
 	static ThemeManager& instance();
 
-	QFont& titleFont() const { return *m_titleFont; }
+	QFont& titleFont() { return *m_titleFont; }
 	QFont& itemFont() const { return *m_itemFont; }
 
 	void loadTheme(QApplication& app);
@@ -37,6 +37,6 @@ private:
 private:
 
 	std::unique_ptr<QFont> m_titleFont;
-	std::unique_ptr<QFont> m_itemFont;
+	std::unique_ptr<QFont> m_itemFont; // TODO: assign different font for todo list item.
 };
 

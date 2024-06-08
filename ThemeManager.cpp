@@ -19,6 +19,7 @@ ThemeManager::ThemeManager()
 
 			m_titleFont = std::make_unique<QFont>(fontName, 28);
 			m_itemFont = std::make_unique<QFont>(fontName, 12);
+			
 		}
 		else
 		{

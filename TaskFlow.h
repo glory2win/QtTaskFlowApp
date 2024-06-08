@@ -17,6 +17,8 @@ private slots:
     void onSettingBtnPressed();
     void onListOptionBtnPressed();
     void onAddCategoryBtnPressed();
+    void onCategoryListItemSelectionChanged();
+    void onCategoryListItemClicked();
 
 private:
     Ui::TaskFlowClass ui;

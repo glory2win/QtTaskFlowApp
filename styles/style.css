@@ -8,13 +8,28 @@ QWidget#TaskFlowClass{
 /* App Title */
 QLabel#appTitleLabel {
     background-color: #E6CD91;
-    color:black
+    color:rgb(59, 179, 129)
 }
 
 /* List Options Button */
 QLabel#categoryTitleLabel{
-    color: black;
+    color: rgb(221, 210, 210);
 }
+
+/* categoryLineEdit custom widget styling */
+#categoryLineEdit{
+    background-color: transparent;
+    border: 0px;
+    color: black
+}
+
+/* categoryListItem custom widget styling */
+#categoryListItem{
+    background-color: transparent;
+    border: 0px;
+    color: black
+}
+
 
 
 /************** BUTTON SETTINGS ****************************/
@@ -60,6 +75,23 @@ QListWidget#todoList{
     border-radius: 5px;
 }
 
+/* Style for selected CategoryListItem */
+QListWidget::item:selected #categoryListItem {
+    background-color: #95a5a6;  /* Change background color when selected */
+    border: 1px solid #7f8c8d;  /* Change border color when selected */
+}
+
+/* Additional styling for QLabel inside CategoryListItem */
+#categoryListItem QLabel {
+    margin: 5px;
+    font-weight: bold;
+}
+
+/* Style for QLabel inside selected CategoryListItem */
+QListWidget::item:selected #categoryListItem QLabel {
+    color: #2c3e50;  /* Change text color when selected */
+}
+
 /************** LINEEDIT SETTINGS ****************************/
 QLineEdit#todoItemInput{
     background-color: #42403c;
@@ -68,3 +100,4 @@ QLineEdit#todoItemInput{
     text-align: left;
     color: white;
 }
+

@@ -1,8 +1,12 @@
 #pragma once
 
 #include <QWidget>
+#include <QListWidget>
 #include <QLabel>
 #include <QLineEdit>
+#include <QHBoxLayout>
+
+/* This file holds the definitions for custom QListWidget, QListWidgetItem and its children. */
 
 /* QLineEdit needs to be extended inorder to call the focusOutEvent. */
 class CategoryLineEdit : public QLineEdit
@@ -30,12 +34,18 @@ public:
 
 	void setCategoryName(const QString& rename) const;
 	void setEditable(bool enabled) const;
+	void setSelected(bool isSelected) const;
 
 private	slots:
-		auto handleLostFocus() -> void;
+	auto handleLostFocus() -> void;
 
 private:
 
 	QLabel* m_iconLabel;
 	CategoryLineEdit* m_categoryLineEdit;
+	QHBoxLayout* m_layout;
+
+	// Pixmap objects - will be destroyed when this object get destroyed.
+	class QPixmap m_expandedIcon;
+	class QPixmap m_collapsedIcon;
 };

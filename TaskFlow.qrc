@@ -7,5 +7,7 @@
         <file>fonts/Itim-Regular.ttf</file>
         <file>styles/style.css</file>
         <file>images/new_category.png</file>
+        <file>images/chevron_right.png</file>
+        <file>images/list.png</file>
     </qresource>
 </RCC>

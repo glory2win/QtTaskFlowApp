@@ -49,7 +49,7 @@
     <ClCompile Include="ThemeManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="CategoryListItem.cpp">
+    <ClCompile Include="CategoryList.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="TestWidget.cpp">
@@ -62,7 +62,7 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <QtMoc Include="CategoryListItem.h">
+    <QtMoc Include="CategoryList.h">
       <Filter>Header Files</Filter>
     </QtMoc>
     <QtMoc Include="TestWidget.h">

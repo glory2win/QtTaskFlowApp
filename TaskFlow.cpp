@@ -4,7 +4,7 @@
 #include <QIcon>
 #include <QMessageBox>
 
-#include "CategoryListItem.h"
+#include "CategoryList.h"
 #include <QListWidgetItem>
 #include "ThemeManager.h"
 
@@ -45,11 +45,12 @@ void TaskFlow::setupUi() const
 	ui.addCategoryListBtn->setFlat(false);
 
 	// Getting fonts from Theme manager
-
+	ThemeManager::instance().titleFont().setPointSize(28);
 	ui.categoryTitleLabel->setFont(ThemeManager::instance().titleFont());
 	ui.categoryTitleLabel->setText("Groceries");
 
-	ui.todoItemInput->setFont(ThemeManager::instance().itemFont());
+	ThemeManager::instance().titleFont().setPointSize(12);
+	ui.todoItemInput->setFont(ThemeManager::instance().titleFont());
 	ui.todoItemInput->setPlaceholderText(QString("Enter your task here.."));
 }
 
@@ -58,6 +59,8 @@ void TaskFlow::connectUi()
 	connect(ui.settingsBtn, &QPushButton::clicked, this, &TaskFlow::onSettingBtnPressed);
 	connect(ui.listOptionsBtn, &QPushButton::clicked, this, &TaskFlow::onListOptionBtnPressed);
 	connect(ui.addCategoryListBtn, &QPushButton::clicked, this, &TaskFlow::onAddCategoryBtnPressed);
+	connect(ui.categoryList, &QListWidget::itemSelectionChanged, this, &TaskFlow::onCategoryListItemSelectionChanged);
+	connect(ui.categoryList, &QListWidget::itemClicked, this, &TaskFlow::onCategoryListItemClicked);
 }
 
 
@@ -92,4 +95,23 @@ void TaskFlow::onAddCategoryBtnPressed()
 	ui.categoryList->setItemWidget(item, itemWidget);
 
 	itemWidget->setEditable(true);
+}
+
+void TaskFlow::onCategoryListItemSelectionChanged()
+{
+	qDebug() << "Item selection changed";
+
+	int itemCount = ui.categoryList->count();
+	for (int i = 0; i < itemCount; ++i)
+	{
+		// To get QWidget, here CategoryListItem wrapped by QListWidgetItem, we need to cast that from itemWidget of QList.
+		QListWidgetItem* item = ui.categoryList->item(i);
+		CategoryListItem* catItem = qobject_cast<CategoryListItem*>(ui.categoryList->itemWidget(item));
+		catItem->setSelected(item->isSelected());
+	}
+}
+
+void TaskFlow::onCategoryListItemClicked()
+{
+
 }
