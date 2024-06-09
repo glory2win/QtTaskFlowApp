@@ -57,7 +57,6 @@ CategoryListItem::CategoryListItem(QWidget* parent) : QWidget(parent),
 	{
 		setEditable(false);
 	});
-
 }
 
 void CategoryListItem::setCategoryName(const QString& rename) const

@@ -8,7 +8,7 @@
 #include <QListWidgetItem>
 #include "utilities/ThemeManager.h"
 
-TaskFlow::TaskFlow(QWidget* parent)
+TaskFlowView::TaskFlowView(QWidget* parent)
 	: QWidget(parent)
 {
 	ui.setupUi(this);
@@ -17,7 +17,7 @@ TaskFlow::TaskFlow(QWidget* parent)
 	this->connectUi();
 }
 
-void TaskFlow::setupUi() const
+void TaskFlowView::setupUi() const
 {
 	QPixmap titlePixMap(":/images/TaskFlowAppTitle.png");
 	ui.appTitleLabel->setPixmap(titlePixMap);
@@ -54,31 +54,31 @@ void TaskFlow::setupUi() const
 	ui.todoItemInput->setPlaceholderText(QString("Enter your task here.."));
 }
 
-void TaskFlow::connectUi()
+void TaskFlowView::connectUi()
 {
-	connect(ui.settingsBtn, &QPushButton::clicked, this, &TaskFlow::onSettingBtnPressed);
-	connect(ui.listOptionsBtn, &QPushButton::clicked, this, &TaskFlow::onListOptionBtnPressed);
-	connect(ui.addCategoryListBtn, &QPushButton::clicked, this, &TaskFlow::onAddCategoryBtnPressed);
-	connect(ui.categoryList, &QListWidget::itemSelectionChanged, this, &TaskFlow::onCategoryListItemSelectionChanged);
-	connect(ui.categoryList, &QListWidget::itemClicked, this, &TaskFlow::onCategoryListItemClicked);
+	connect(ui.settingsBtn, &QPushButton::clicked, this, &TaskFlowView::onSettingBtnPressed);
+	connect(ui.listOptionsBtn, &QPushButton::clicked, this, &TaskFlowView::onListOptionBtnPressed);
+	connect(ui.addCategoryListBtn, &QPushButton::clicked, this, &TaskFlowView::onAddCategoryBtnPressed);
+	connect(ui.categoryList, &QListWidget::itemSelectionChanged, this, &TaskFlowView::onCategoryListItemSelectionChanged);
+	connect(ui.categoryList, &QListWidget::itemClicked, this, &TaskFlowView::onCategoryListItemClicked);
 }
 
 
 // Slots
 
-void TaskFlow::onSettingBtnPressed()
+void TaskFlowView::onSettingBtnPressed()
 {
 	qDebug() << "[Settings] - Settings button pressed " << __FUNCTION__;
 }
 
-void TaskFlow::onListOptionBtnPressed()
+void TaskFlowView::onListOptionBtnPressed()
 {
 	qDebug() << "[List Options] - List Options button pressed " << __FUNCTION__;
 
 	// Create label
 }
 
-void TaskFlow::onAddCategoryBtnPressed()
+void TaskFlowView::onAddCategoryBtnPressed()
 {
 	qDebug() << "[Category Lists] - Add category list button pressed " << __FUNCTION__;
 
@@ -99,7 +99,7 @@ void TaskFlow::onAddCategoryBtnPressed()
 	onCategoryListItemSelectionChanged();
 }
 
-void TaskFlow::onCategoryListItemSelectionChanged()
+void TaskFlowView::onCategoryListItemSelectionChanged()
 {
 	qDebug() << "Item selection changed";
 
@@ -110,11 +110,9 @@ void TaskFlow::onCategoryListItemSelectionChanged()
 		QListWidgetItem* item = ui.categoryList->item(i);
 		CategoryListItem* catItem = qobject_cast<CategoryListItem*>(ui.categoryList->itemWidget(item));
 		catItem->setSelected(item->isSelected());
-
 	}
 }
 
-void TaskFlow::onCategoryListItemClicked()
+void TaskFlowView::onCategoryListItemClicked()
 {
-
 }

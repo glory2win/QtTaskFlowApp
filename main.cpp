@@ -27,7 +27,7 @@ int main(int argc, char* argv[])
 
 	ThemeManager::instance().loadTheme(app);
 
-	TaskFlow flowWindow;
+	TaskFlowView flowWindow;
 	flowWindow.setFixedSize(1024, 768);
 	flowWindow.show();
 

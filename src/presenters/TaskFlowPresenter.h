@@ -1,29 +1,22 @@
 #pragma once
 
-#include <QObject>
 #include <models/DataManager.h>
 #include <views/TaskFlowView.h>
-#include <memory>
 
-class TaskFlowPresenter : QObject
+class TaskFlowPresenter : public QObject
 {
 	Q_OBJECT
 
 public:
-	explicit TaskFlowPresenter(
-		std::unique_ptr<DataManager> model,
-		std::unique_ptr<TaskFlow> view,
-		QObject* parent =  nullptr
-		);
+	explicit TaskFlowPresenter(DataManager* model, TaskFlowView* view, QObject* parent = nullptr);
 
 	~TaskFlowPresenter() override = default;
 
-
 private slots:
 	void onCategoryNameChanged(const QString& rename);
+	void onNewCategoryAdded(const QString& name);
 
 private:
-	std::unique_ptr<DataManager> m_model;
-	std::unique_ptr<TaskFlow> m_view;
+	DataManager* m_model;
+	TaskFlowView* m_view;
 };
-

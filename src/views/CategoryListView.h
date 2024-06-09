@@ -12,6 +12,7 @@
 class CategoryLineEdit : public QLineEdit
 {
 	Q_OBJECT
+
 public:
 	explicit CategoryLineEdit(QWidget* parent);
 	~CategoryLineEdit() override = default;
@@ -36,7 +37,6 @@ public:
 	void setSelected(bool isSelected) const;
 
 private:
-
 	QLabel* m_iconLabel;
 	CategoryLineEdit* m_categoryLineEdit;
 	QHBoxLayout* m_layout;

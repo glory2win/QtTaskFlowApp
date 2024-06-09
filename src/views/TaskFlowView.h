@@ -5,27 +5,27 @@
 
 #include <QPushButton>
 
-class TaskFlow : public QWidget
+class TaskFlowView : public QWidget
 {
-    Q_OBJECT
+	Q_OBJECT
 
 public:
-    explicit TaskFlow(QWidget *parent = nullptr);
-    ~TaskFlow() override = default;
+	explicit TaskFlowView(QWidget* parent = nullptr);
+	~TaskFlowView() override = default;
 
 signals:
-    void categoryAdded(const QString& categoryName);
-    void todoAdded(int categoryId, const QString& todoText);
+	void categoryAdded(const QString& categoryName);
+	void todoAdded(int categoryId, const QString& todoText);
 
 private slots:
-    void onSettingBtnPressed();
-    void onListOptionBtnPressed();
-    void onAddCategoryBtnPressed();
-    void onCategoryListItemSelectionChanged();
-    void onCategoryListItemClicked();
+	void onSettingBtnPressed();
+	void onListOptionBtnPressed();
+	void onAddCategoryBtnPressed();
+	void onCategoryListItemSelectionChanged();
+	void onCategoryListItemClicked();
 
 private:
-    Ui::TaskFlowClass ui;
-    void setupUi() const;
-    void connectUi();
+	Ui::TaskFlowClass ui;
+	void setupUi() const;
+	void connectUi();
 };
