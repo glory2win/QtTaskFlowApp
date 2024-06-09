@@ -21,6 +21,30 @@
       <UniqueIdentifier>{99349809-55BA-4b9d-BF79-8FDBB0286EB3}</UniqueIdentifier>
       <Extensions>ui</Extensions>
     </Filter>
+    <Filter Include="Header Files\Models">
+      <UniqueIdentifier>{d0f03e45-6c26-4a5c-910d-4114d7e08430}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Views">
+      <UniqueIdentifier>{422ceda4-1b79-4a5b-9136-60a8d10cd150}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Presenters">
+      <UniqueIdentifier>{26d0a35b-e2ee-4fd5-bdb0-e7ff7c392407}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Models">
+      <UniqueIdentifier>{9329c046-0194-4039-9b54-cff985a40411}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Views">
+      <UniqueIdentifier>{50d4b018-df90-4f61-8e07-8f770888aaf4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Presenters">
+      <UniqueIdentifier>{ba4a9055-35b5-4163-83d9-f202b134b4c7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Utilities">
+      <UniqueIdentifier>{543246b6-8360-432b-95ac-baa09c2bd2bd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Utilities">
+      <UniqueIdentifier>{02ebf394-c2cc-4fd8-928e-9c8b82b52a71}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <QtRcc Include="TaskFlow.qrc">
@@ -29,12 +53,6 @@
     <QtUic Include="TaskFlow.ui">
       <Filter>UI</Filter>
     </QtUic>
-    <QtMoc Include="TaskFlow.h">
-      <Filter>Header Files</Filter>
-    </QtMoc>
-    <ClCompile Include="TaskFlow.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <None Include="TaskFlow.ico">
       <Filter>Resource Files</Filter>
     </None>
@@ -43,41 +61,53 @@
     </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ThemeManager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="CategoryList.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="TestWidget.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="DataManager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="ThemeManager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="DataManager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <QtMoc Include="CategoryList.h">
-      <Filter>Header Files</Filter>
-    </QtMoc>
-    <QtMoc Include="TestWidget.h">
-      <Filter>Header Files</Filter>
-    </QtMoc>
-  </ItemGroup>
-  <ItemGroup>
     <QtUic Include="TestWidget.ui">
       <Filter>UI</Filter>
     </QtUic>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\utilities\ThemeManager.cpp">
+      <Filter>Source Files\Utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="src\views\CategoryList.cpp">
+      <Filter>Source Files\Views</Filter>
+    </ClCompile>
+    <ClCompile Include="src\models\DataManager.cpp">
+      <Filter>Source Files\Models</Filter>
+    </ClCompile>
+    <ClCompile Include="src\views\TaskFlow.cpp">
+      <Filter>Source Files\Views</Filter>
+    </ClCompile>
+    <ClCompile Include="src\presenters\TaskFlowPresenter.cpp">
+      <Filter>Source Files\Presenters</Filter>
+    </ClCompile>
+    <ClCompile Include="src\views\TestWidget.cpp">
+      <Filter>Source Files\Views</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\models\DataManager.h">
+      <Filter>Header Files\Models</Filter>
+    </ClInclude>
+    <ClInclude Include="src\presenters\TaskFlowPresenter.h">
+      <Filter>Header Files\Presenters</Filter>
+    </ClInclude>
+    <ClInclude Include="src\utilities\ThemeManager.h">
+      <Filter>Header Files\Utilities</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <QtMoc Include="src\views\CategoryList.h">
+      <Filter>Header Files\Views</Filter>
+    </QtMoc>
+    <QtMoc Include="src\views\TaskFlow.h">
+      <Filter>Header Files\Views</Filter>
+    </QtMoc>
+    <QtMoc Include="src\views\TestWidget.h">
+      <Filter>Header Files\Views</Filter>
+    </QtMoc>
   </ItemGroup>
 </Project>

@@ -3,13 +3,14 @@
 #include <QtWidgets/QApplication>
 
 #ifdef USE_TEST_WIDGET
-#include "TestWidget.h"
+#include "views/TestWidget.h"
 #else
-#include "TaskFlow.h"
+#include "views/TaskFlow.h"
+
 #endif
 
-#include "ThemeManager.h"
-#include "DataManager.h"
+#include "utilities/ThemeManager.h"
+#include "models/DataManager.h"
 
 int main(int argc, char* argv[])
 {

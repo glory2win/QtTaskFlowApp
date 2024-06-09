@@ -6,7 +6,7 @@
 
 #include "CategoryList.h"
 #include <QListWidgetItem>
-#include "ThemeManager.h"
+#include "utilities/ThemeManager.h"
 
 TaskFlow::TaskFlow(QWidget* parent)
 	: QWidget(parent)
