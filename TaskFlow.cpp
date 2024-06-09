@@ -95,6 +95,8 @@ void TaskFlow::onAddCategoryBtnPressed()
 	ui.categoryList->setItemWidget(item, itemWidget);
 
 	itemWidget->setEditable(true);
+	item->setSelected(true);
+	onCategoryListItemSelectionChanged();
 }
 
 void TaskFlow::onCategoryListItemSelectionChanged()

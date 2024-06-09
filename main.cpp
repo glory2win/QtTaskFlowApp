@@ -9,6 +9,7 @@
 #endif
 
 #include "ThemeManager.h"
+#include "DataManager.h"
 
 int main(int argc, char* argv[])
 {
@@ -19,6 +20,9 @@ int main(int argc, char* argv[])
 	testWidget.show();
 
 #else
+	/* Load and Save application data to Json, assuming ./data/data.json */
+	DataManager dataManager;
+
 
 	ThemeManager::instance().loadTheme(app);
 

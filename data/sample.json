@@ -1,0 +1,44 @@
+{
+  "categories": [
+    {
+      "name": "Groceries",
+      "items": [
+        {
+          "todo": "apple",
+          "done": true,
+          "imp": false
+        },
+        {
+          "todo": "banana",
+          "done": true,
+          "imp": false
+        },
+        {
+          "todo": "orange",
+          "done": false,
+          "imp": true
+        }
+      ]
+    },
+    {
+      "name": "Travel",
+      "items": [
+        {
+          "todo": "italy",
+          "done": true,
+          "imp": false
+        },
+        {
+          "todo": "norway",
+          "done": true,
+          "imp": false
+        },
+        {
+          "todo": "denmark",
+          "done": false,
+          "imp": true
+        }
+      ]
+    }
+  ]
+}

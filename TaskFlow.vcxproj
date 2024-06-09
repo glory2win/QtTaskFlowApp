@@ -104,6 +104,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="CategoryList.cpp" />
+    <ClCompile Include="DataManager.cpp" />
     <ClCompile Include="TestWidget.cpp" />
     <ClCompile Include="ThemeManager.cpp" />
     <QtRcc Include="TaskFlow.qrc" />
@@ -118,6 +119,7 @@
   <ItemGroup>
     <QtMoc Include="CategoryList.h" />
     <QtMoc Include="TestWidget.h" />
+    <ClInclude Include="DataManager.h" />
     <ClInclude Include="ThemeManager.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
