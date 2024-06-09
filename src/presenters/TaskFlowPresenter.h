@@ -2,7 +2,7 @@
 
 #include <QObject>
 #include <models/DataManager.h>
-#include <views/TaskFlow.h>
+#include <views/TaskFlowView.h>
 #include <memory>
 
 class TaskFlowPresenter : QObject

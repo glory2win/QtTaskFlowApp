@@ -3,9 +3,9 @@
 #include <QtWidgets/QApplication>
 
 #ifdef USE_TEST_WIDGET
-#include "views/TestWidget.h"
+#include "views/TestWidgetView.h"
 #else
-#include "views/TaskFlow.h"
+#include "views/TaskFlowView.h"
 
 #endif
 

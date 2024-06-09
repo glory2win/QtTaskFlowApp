@@ -1,5 +1,5 @@
 #include "utilities/ThemeManager.h"
-#include "CategoryList.h"
+#include "CategoryListView.h"
 
 
 #include <QPixmap>

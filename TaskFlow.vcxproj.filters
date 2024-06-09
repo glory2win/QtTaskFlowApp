@@ -94,13 +94,13 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <QtMoc Include="src\views\CategoryList.h">
+    <QtMoc Include="src\views\CategoryListView.h">
       <Filter>Header Files\Views</Filter>
     </QtMoc>
-    <QtMoc Include="src\views\TaskFlow.h">
+    <QtMoc Include="src\views\TaskFlowView.h">
       <Filter>Header Files\Views</Filter>
     </QtMoc>
-    <QtMoc Include="src\views\TestWidget.h">
+    <QtMoc Include="src\views\TestWidgetView.h">
       <Filter>Header Files\Views</Filter>
     </QtMoc>
     <QtMoc Include="src\models\DataManager.h">
