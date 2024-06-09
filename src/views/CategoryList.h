@@ -16,12 +16,11 @@ public:
 	explicit CategoryLineEdit(QWidget* parent);
 	~CategoryLineEdit() override = default;
 
+signals:
+	void focusChanged();
+
 protected:
 	void focusOutEvent(QFocusEvent* event) override;
-
-private:
-	signals:
-		void focusChanged();
 };
 
 class CategoryListItem : public QWidget
@@ -35,9 +34,6 @@ public:
 	void setCategoryName(const QString& rename) const;
 	void setEditable(bool enabled) const;
 	void setSelected(bool isSelected) const;
-
-private	slots:
-	auto handleLostFocus() -> void;
 
 private:
 

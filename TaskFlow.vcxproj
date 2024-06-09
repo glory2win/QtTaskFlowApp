@@ -127,8 +127,8 @@
     <ClCompile Include="src\views\TestWidget.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\models\DataManager.h" />
-    <ClInclude Include="src\presenters\TaskFlowPresenter.h" />
+    <QtMoc Include="src\models\DataManager.h" />
+    <QtMoc Include="src\presenters\TaskFlowPresenter.h" />
     <ClInclude Include="src\utilities\ThemeManager.h" />
     <QtMoc Include="src\views\TestWidget.h" />
     <QtMoc Include="src\views\TaskFlow.h" />

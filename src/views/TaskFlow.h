@@ -13,6 +13,10 @@ public:
     explicit TaskFlow(QWidget *parent = nullptr);
     ~TaskFlow() override = default;
 
+signals:
+    void categoryAdded(const QString& categoryName);
+    void todoAdded(int categoryId, const QString& todoText);
+
 private slots:
     void onSettingBtnPressed();
     void onListOptionBtnPressed();

@@ -58,7 +58,6 @@ CategoryListItem::CategoryListItem(QWidget* parent) : QWidget(parent),
 		setEditable(false);
 	});
 
-	QObject::connect(m_categoryLineEdit, &CategoryLineEdit::focusChanged, this, &CategoryListItem::handleLostFocus);
 }
 
 void CategoryListItem::setCategoryName(const QString& rename) const
@@ -102,11 +101,6 @@ void CategoryListItem::setSelected(const bool isSelected) const
 		m_categoryLineEdit->setStyleSheet("background-color: #C9C1B0; color: black");
 		m_iconLabel->setPixmap(m_collapsedIcon);
 	}
-}
-
-void CategoryListItem::handleLostFocus()
-{
-	qDebug() << "Focus has lost";
 }
 
 #pragma endregion LIST_ITEM

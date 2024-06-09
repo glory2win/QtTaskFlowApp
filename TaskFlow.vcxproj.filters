@@ -89,12 +89,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\models\DataManager.h">
-      <Filter>Header Files\Models</Filter>
-    </ClInclude>
-    <ClInclude Include="src\presenters\TaskFlowPresenter.h">
-      <Filter>Header Files\Presenters</Filter>
-    </ClInclude>
     <ClInclude Include="src\utilities\ThemeManager.h">
       <Filter>Header Files\Utilities</Filter>
     </ClInclude>
@@ -108,6 +102,12 @@
     </QtMoc>
     <QtMoc Include="src\views\TestWidget.h">
       <Filter>Header Files\Views</Filter>
+    </QtMoc>
+    <QtMoc Include="src\models\DataManager.h">
+      <Filter>Header Files\Models</Filter>
+    </QtMoc>
+    <QtMoc Include="src\presenters\TaskFlowPresenter.h">
+      <Filter>Header Files\Presenters</Filter>
     </QtMoc>
   </ItemGroup>
 </Project>

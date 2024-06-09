@@ -89,6 +89,7 @@ void DataManager::loadFromJson(const QString& filePath)
 		categories.append(category);
 	}
 
+	emit dataChanged();
 
 }
 

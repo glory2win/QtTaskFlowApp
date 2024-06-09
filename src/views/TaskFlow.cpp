@@ -110,6 +110,7 @@ void TaskFlow::onCategoryListItemSelectionChanged()
 		QListWidgetItem* item = ui.categoryList->item(i);
 		CategoryListItem* catItem = qobject_cast<CategoryListItem*>(ui.categoryList->itemWidget(item));
 		catItem->setSelected(item->isSelected());
+
 	}
 }
 
