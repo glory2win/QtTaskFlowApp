@@ -47,7 +47,7 @@ void TaskFlow::setupUi() const
 	// Getting fonts from Theme manager
 	ThemeManager::instance().titleFont().setPointSize(28);
 	ui.categoryTitleLabel->setFont(ThemeManager::instance().titleFont());
-	ui.categoryTitleLabel->setText("Groceries");
+	ui.categoryTitleLabel->setText("No Task List");
 
 	ThemeManager::instance().titleFont().setPointSize(12);
 	ui.todoItemInput->setFont(ThemeManager::instance().titleFont());
