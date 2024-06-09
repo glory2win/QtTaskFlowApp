@@ -1,4 +1,4 @@
-#include "TestWidget.h"
+#include "TestWidgetView.h"
 
 #include <QListWidgetItem>
 #include <QListWidget>

@@ -122,17 +122,17 @@
     <ClCompile Include="src\models\DataManager.cpp" />
     <ClCompile Include="src\presenters\TaskFlowPresenter.cpp" />
     <ClCompile Include="src\utilities\ThemeManager.cpp" />
-    <ClCompile Include="src\views\CategoryList.cpp" />
-    <ClCompile Include="src\views\TaskFlow.cpp" />
-    <ClCompile Include="src\views\TestWidget.cpp" />
+    <ClCompile Include="src\views\CategoryListView.cpp" />
+    <ClCompile Include="src\views\TaskFlowView.cpp" />
+    <ClCompile Include="src\views\TestWidgetView.cpp" />
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="src\models\DataManager.h" />
     <QtMoc Include="src\presenters\TaskFlowPresenter.h" />
     <ClInclude Include="src\utilities\ThemeManager.h" />
-    <QtMoc Include="src\views\TestWidget.h" />
-    <QtMoc Include="src\views\TaskFlow.h" />
-    <QtMoc Include="src\views\CategoryList.h" />
+    <QtMoc Include="src\views\TestWidgetView.h" />
+    <QtMoc Include="src\views\TaskFlowView.h" />
+    <QtMoc Include="src\views\CategoryListView.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">

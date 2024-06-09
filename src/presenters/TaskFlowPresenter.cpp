@@ -6,3 +6,8 @@ TaskFlowPresenter::TaskFlowPresenter(std::unique_ptr<DataManager> model, std::un
 {
 
 }
+
+void TaskFlowPresenter::onCategoryNameChanged(const QString& rename)
+{
+
+}

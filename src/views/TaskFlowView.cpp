@@ -1,10 +1,10 @@
-#include "TaskFlow.h"
+#include "TaskFlowView.h"
 
 #include <QPixmap>
 #include <QIcon>
 #include <QMessageBox>
 
-#include "CategoryList.h"
+#include "CategoryListView.h"
 #include <QListWidgetItem>
 #include "utilities/ThemeManager.h"
 

@@ -69,19 +69,19 @@
     <ClCompile Include="src\utilities\ThemeManager.cpp">
       <Filter>Source Files\Utilities</Filter>
     </ClCompile>
-    <ClCompile Include="src\views\CategoryList.cpp">
+    <ClCompile Include="src\views\CategoryListView.cpp">
       <Filter>Source Files\Views</Filter>
     </ClCompile>
     <ClCompile Include="src\models\DataManager.cpp">
       <Filter>Source Files\Models</Filter>
     </ClCompile>
-    <ClCompile Include="src\views\TaskFlow.cpp">
+    <ClCompile Include="src\views\TaskFlowView.cpp">
       <Filter>Source Files\Views</Filter>
     </ClCompile>
     <ClCompile Include="src\presenters\TaskFlowPresenter.cpp">
       <Filter>Source Files\Presenters</Filter>
     </ClCompile>
-    <ClCompile Include="src\views\TestWidget.cpp">
+    <ClCompile Include="src\views\TestWidgetView.cpp">
       <Filter>Source Files\Views</Filter>
     </ClCompile>
     <ClCompile Include="main.cpp">
@@ -94,13 +94,13 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <QtMoc Include="src\views\CategoryList.h">
+    <QtMoc Include="src\views\CategoryListView.h">
       <Filter>Header Files\Views</Filter>
     </QtMoc>
-    <QtMoc Include="src\views\TaskFlow.h">
+    <QtMoc Include="src\views\TaskFlowView.h">
       <Filter>Header Files\Views</Filter>
     </QtMoc>
-    <QtMoc Include="src\views\TestWidget.h">
+    <QtMoc Include="src\views\TestWidgetView.h">
       <Filter>Header Files\Views</Filter>
     </QtMoc>
     <QtMoc Include="src\models\DataManager.h">
