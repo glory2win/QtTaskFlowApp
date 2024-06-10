@@ -1,8 +1,8 @@
-#include "utilities/ThemeManager.h"
 #include "CategoryListView.h"
 
-
 #include <QPixmap>
+#include "utilities/ThemeManager.h"
+#include "views/TaskFlowView.h"
 
 
 #pragma region LINE_EDIT
@@ -26,7 +26,7 @@ void CategoryLineEdit::focusOutEvent(QFocusEvent* event)
 
 
 #pragma region LIST_ITEM
-CategoryListItem::CategoryListItem(QWidget* parent) : QWidget(parent),
+CategoryListItem::CategoryListItem(TaskFlowView* mainView, QWidget* parent) : QWidget(parent),
                                                       m_expandedIcon(QString(":/images/chevron_right.png")),
                                                       m_collapsedIcon(QString(":/images/list.png"))
 {
@@ -53,10 +53,17 @@ CategoryListItem::CategoryListItem(QWidget* parent) : QWidget(parent),
 
 	setLayout(m_layout);
 
+	connect(this, &CategoryListItem::categoryNameUpdated, mainView, &TaskFlowView::onCategoryNameUpdated);
 	connect(m_categoryLineEdit, &QLineEdit::editingFinished, [&]()
 	{
 		setEditable(false);
+		emit categoryNameUpdated(m_categoryLineEdit->text()); // emit nameUpdated event when press return key.
 	});
+}
+
+QString CategoryListItem::getCategoryName() const
+{
+	return m_categoryLineEdit->text();
 }
 
 void CategoryListItem::setCategoryName(const QString& rename) const

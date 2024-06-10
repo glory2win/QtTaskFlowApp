@@ -6,6 +6,9 @@
 #include <QLineEdit>
 #include <QHBoxLayout>
 
+// Forward declares.
+class TaskFlowView;
+
 /* This file holds the definitions for custom QListWidget, QListWidgetItem and its children. */
 
 /* QLineEdit needs to be extended inorder to call the focusOutEvent. */
@@ -29,12 +32,17 @@ class CategoryListItem : public QWidget
 	Q_OBJECT
 
 public:
-	explicit CategoryListItem(QWidget* parent);
+	explicit CategoryListItem(TaskFlowView* mainView, QWidget* parent);
 	~CategoryListItem() override = default;
 
+	QString getCategoryName() const;
 	void setCategoryName(const QString& rename) const;
 	void setEditable(bool enabled) const;
 	void setSelected(bool isSelected) const;
+
+signals:
+	void categoryNameUpdated(const QString& rename);
+	
 
 private:
 	QLabel* m_iconLabel;

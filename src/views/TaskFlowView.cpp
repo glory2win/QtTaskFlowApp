@@ -83,7 +83,7 @@ void TaskFlowView::onAddCategoryBtnPressed()
 	qDebug() << "[Category Lists] - Add category list button pressed " << __FUNCTION__;
 
 	// 1. Instantiate the custom widget.
-	CategoryListItem* itemWidget = new CategoryListItem(ui.categoryList);
+	CategoryListItem* itemWidget = new CategoryListItem(this, ui.categoryList);
 
 	// 2. In Qt, QListItemWidget is container that accepts the custom widget, this item widget is needed for list widget.
 	QListWidgetItem* item = new QListWidgetItem(ui.categoryList);
@@ -109,10 +109,20 @@ void TaskFlowView::onCategoryListItemSelectionChanged()
 		// To get QWidget, here CategoryListItem wrapped by QListWidgetItem, we need to cast that from itemWidget of QList.
 		QListWidgetItem* item = ui.categoryList->item(i);
 		CategoryListItem* catItem = qobject_cast<CategoryListItem*>(ui.categoryList->itemWidget(item));
+		if (item->isSelected())
+		{
+			ui.categoryTitleLabel->setText(catItem->getCategoryName());
+		}
 		catItem->setSelected(item->isSelected());
 	}
 }
 
 void TaskFlowView::onCategoryListItemClicked()
 {
+}
+
+void TaskFlowView::onCategoryNameUpdated(const QString& rename)
+{
+	qDebug() << "Catgory name has updated to: [" << rename << "] Func: " << __FUNCTION__;
+	ui.categoryTitleLabel->setText(rename);
 }

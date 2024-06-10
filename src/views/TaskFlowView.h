@@ -17,9 +17,14 @@ signals:
 	void categoryAdded(const QString& categoryName);
 	void todoAdded(int categoryId, const QString& todoText);
 
+public slots:
+	void onCategoryNameUpdated(const QString& rename);
+
+
 private slots:
 	void onSettingBtnPressed();
 	void onListOptionBtnPressed();
+
 	void onAddCategoryBtnPressed();
 	void onCategoryListItemSelectionChanged();
 	void onCategoryListItemClicked();
