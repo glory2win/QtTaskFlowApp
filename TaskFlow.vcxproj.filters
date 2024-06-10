@@ -87,6 +87,9 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\views\TodoListView.cpp">
+      <Filter>Source Files\Views</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\utilities\ThemeManager.h">
@@ -108,6 +111,9 @@
     </QtMoc>
     <QtMoc Include="src\presenters\TaskFlowPresenter.h">
       <Filter>Header Files\Presenters</Filter>
+    </QtMoc>
+    <QtMoc Include="src\views\TodoListView.h">
+      <Filter>Header Files\Views</Filter>
     </QtMoc>
   </ItemGroup>
 </Project>

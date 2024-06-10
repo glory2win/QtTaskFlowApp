@@ -5,6 +5,7 @@
 #include <QMessageBox>
 
 #include "CategoryListView.h"
+#include "TodoListView.h"
 #include <QListWidgetItem>
 #include "utilities/ThemeManager.h"
 
@@ -16,6 +17,12 @@ TaskFlowView::TaskFlowView(QWidget* parent)
 	this->setupUi();
 	this->connectUi();
 }
+
+int TaskFlowView::getSelectedCategoryIndex() const
+{
+	return 0;
+}
+
 
 void TaskFlowView::setupUi() const
 {
@@ -59,8 +66,17 @@ void TaskFlowView::connectUi()
 	connect(ui.settingsBtn, &QPushButton::clicked, this, &TaskFlowView::onSettingBtnPressed);
 	connect(ui.listOptionsBtn, &QPushButton::clicked, this, &TaskFlowView::onListOptionBtnPressed);
 	connect(ui.addCategoryListBtn, &QPushButton::clicked, this, &TaskFlowView::onAddCategoryBtnPressed);
-	connect(ui.categoryList, &QListWidget::itemSelectionChanged, this, &TaskFlowView::onCategoryListItemSelectionChanged);
+
+	connect(ui.categoryList, &QListWidget::itemSelectionChanged, this,
+	        &TaskFlowView::onCategoryListItemSelectionChanged);
+
 	connect(ui.categoryList, &QListWidget::itemClicked, this, &TaskFlowView::onCategoryListItemClicked);
+
+	connect(ui.todoItemInput, &QLineEdit::editingFinished, [&]()
+	{
+		onTodoItemAdded(ui.todoItemInput->text());
+		ui.todoItemInput->clear();
+	});
 }
 
 
@@ -121,8 +137,28 @@ void TaskFlowView::onCategoryListItemClicked()
 {
 }
 
+void TaskFlowView::onTodoItemAdded(const QString& todoText)
+{
+	qDebug() << "A new todo item has been added to the list." << __FUNCTION__;
+
+	TodoListItem* itemWidget = new TodoListItem(this, ui.todoList);
+	QListWidgetItem* item = new QListWidgetItem(ui.todoList);
+	item->setSizeHint(itemWidget->sizeHint());
+	ui.todoList->setItemWidget(item, itemWidget);
+
+	itemWidget->setTotoText(todoText);
+
+	int categoryIndex = getSelectedCategoryIndex();
+	emit todoAdded(categoryIndex, itemWidget->getTodoText());
+}
+
 void TaskFlowView::onCategoryNameUpdated(const QString& rename)
 {
 	qDebug() << "Catgory name has updated to: [" << rename << "] Func: " << __FUNCTION__;
 	ui.categoryTitleLabel->setText(rename);
+}
+
+void TaskFlowView::onTodoTextUpdated(const QString& rename)
+{
+	qDebug() << "Todo name has updated to: [" << rename << "] Func: " << __FUNCTION__;
 }

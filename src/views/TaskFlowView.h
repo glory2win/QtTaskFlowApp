@@ -13,12 +13,16 @@ public:
 	explicit TaskFlowView(QWidget* parent = nullptr);
 	~TaskFlowView() override = default;
 
+	int getSelectedCategoryIndex() const;
+
+
 signals:
 	void categoryAdded(const QString& categoryName);
 	void todoAdded(int categoryId, const QString& todoText);
 
 public slots:
 	void onCategoryNameUpdated(const QString& rename);
+	void onTodoTextUpdated(const QString& rename);
 
 
 private slots:
@@ -28,6 +32,8 @@ private slots:
 	void onAddCategoryBtnPressed();
 	void onCategoryListItemSelectionChanged();
 	void onCategoryListItemClicked();
+
+	void onTodoItemAdded(const QString& todoText);
 
 private:
 	Ui::TaskFlowClass ui;

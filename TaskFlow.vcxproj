@@ -125,8 +125,10 @@
     <ClCompile Include="src\views\CategoryListView.cpp" />
     <ClCompile Include="src\views\TaskFlowView.cpp" />
     <ClCompile Include="src\views\TestWidgetView.cpp" />
+    <ClCompile Include="src\views\TodoListView.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <QtMoc Include="src\views\TodoListView.h" />
     <QtMoc Include="src\models\DataManager.h" />
     <QtMoc Include="src\presenters\TaskFlowPresenter.h" />
     <ClInclude Include="src\utilities\ThemeManager.h" />
