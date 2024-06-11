@@ -17,17 +17,20 @@ int main(int argc, char* argv[])
 	QApplication app(argc, argv);
 
 #ifdef USE_TEST_WIDGET
-	TestWidget testWidget;
+	Tests::TestWidget testWidget;
 	testWidget.show();
 
 #else
 	/* Load and Save application data to Json, assuming ./data/data.json */
-	DataManager dataManager;
+	Model::DataManager dataManager;
+	dataManager.loadFromJson("data/sample.json");
+	QString debugStr = dataManager.toString();
+	qDebug() << "data: " << debugStr;
 
 
 	ThemeManager::instance().loadTheme(app);
 
-	TaskFlowView flowWindow;
+	View::TaskFlowView flowWindow;
 	flowWindow.setFixedSize(1024, 768);
 	flowWindow.show();
 

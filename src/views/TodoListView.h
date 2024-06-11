@@ -5,46 +5,42 @@
 #include <QCheckBox>
 #include <QPushButton>
 
-class TaskFlowView;
-
-class TodoLineEdit : public QLineEdit
+namespace View
 {
-	Q_OBJECT
+	class TaskFlowView;
 
-public:
-	explicit TodoLineEdit(QWidget* parent);
-	~TodoLineEdit() override = default;
+	class TodoLineEdit : public QLineEdit
+	{
+		Q_OBJECT
 
+	public:
+		explicit TodoLineEdit(QWidget* parent);
+		~TodoLineEdit() override = default;
 
+	private:
+	};
 
-private:
-	
-};
+	class TodoListItem : public QWidget
+	{
+		Q_OBJECT
 
-class TodoListItem : public QWidget
-{
-	Q_OBJECT
+	public:
+		explicit TodoListItem(TaskFlowView* mainView, QWidget* parent);
+		~TodoListItem() override = default;
 
-public:
-	explicit TodoListItem(TaskFlowView* mainView, QWidget* parent);
-	~TodoListItem() override = default;
+		QString getTodoText() const;
+		void setTotoText(const QString& rename) const;
 
-	QString getTodoText() const;
-	void setTotoText(const QString& rename) const;
+		void setEditable(bool enabled) const;
 
-	void setEditable(bool enabled) const;
+	signals:
+		void todoTextUpdated(const QString& rename);
 
-signals:
-	void todoTextUpdated(const QString& rename);
+	private:
+		QCheckBox* m_completedCheckBox;
+		TodoLineEdit* m_todoLineEdit;
+		QPushButton* m_impIconBtn;
 
-
-
-private:
-	QCheckBox* m_completedCheckBox;
-	TodoLineEdit* m_todoLineEdit;
-	QPushButton* m_impIconBtn;
-
-	class QPixmap m_starIcon;
-
-};
-
+		class QPixmap m_starIcon;
+	};
+}

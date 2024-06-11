@@ -3,19 +3,19 @@
 #include <QListWidgetItem>
 #include <QListWidget>
 
-TestListItem::TestListItem(QWidget* parent): QWidget(parent)
+namespace Tests
 {
-}
+	TestListItem::TestListItem(QWidget* parent) : QWidget(parent)
+	{
+	}
 
-TestWidget::TestWidget(QWidget *parent)
-	: QWidget(parent)
-{
-	ui.setupUi(this);
+	TestWidget::TestWidget(QWidget* parent)
+		: QWidget(parent)
+	{
+		ui.setupUi(this);
+	}
 
-
-
-}
-
-TestWidget::~TestWidget()
-{
+	TestWidget::~TestWidget()
+	{
+	}
 }

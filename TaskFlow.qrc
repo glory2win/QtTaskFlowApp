@@ -9,5 +9,7 @@
         <file>images/new_category.png</file>
         <file>images/chevron_right.png</file>
         <file>images/list.png</file>
+        <file>images/circle.png</file>
+        <file>images/circle-checked.png</file>
     </qresource>
 </RCC>

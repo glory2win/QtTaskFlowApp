@@ -3,20 +3,30 @@
 #include <models/DataManager.h>
 #include <views/TaskFlowView.h>
 
-class TaskFlowPresenter : public QObject
+using namespace Model;
+using namespace View;
+
+namespace Presenter
 {
-	Q_OBJECT
+	class TaskFlowPresenter : public QObject
+	{
+		Q_OBJECT
 
-public:
-	explicit TaskFlowPresenter(DataManager* model, TaskFlowView* view, QObject* parent = nullptr);
+	public:
+		explicit TaskFlowPresenter(DataManager* model, TaskFlowView* view, QObject* parent = nullptr);
 
-	~TaskFlowPresenter() override = default;
+		~TaskFlowPresenter() override = default;
 
-private slots:
-	void onCategoryNameChanged(const QString& rename);
-	void onNewCategoryAdded(const QString& name);
+	private slots:
+		//View
+		void onNewCategoryAdded(const QString& name);
+		void onCategorySelected(int categoryIndex);
+		void onCategoryNameChanged(const QString& rename);
+		// Model
+		void onDataChanged();
 
-private:
-	DataManager* m_model;
-	TaskFlowView* m_view;
-};
+	private:
+		DataManager* m_model;
+		TaskFlowView* m_view;
+	};
+}

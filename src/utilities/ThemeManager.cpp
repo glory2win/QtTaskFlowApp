@@ -17,9 +17,8 @@ ThemeManager::ThemeManager()
 		{
 			const QString& fontName = fontFamilies.at(0); // Get the first one.
 
-			m_titleFont = std::make_unique<QFont>(fontName, 28);
-			m_itemFont = std::make_unique<QFont>(fontName, 12);
-			
+			m_titleFont = std::make_unique<QFont>(fontName, 28); // TODO: load the font size from QSettings.
+			m_itemFont = std::make_unique<QFont>(fontName, 16);
 		}
 		else
 		{

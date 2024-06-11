@@ -4,25 +4,28 @@
 #include <QWidget>
 #include "ui_TestWidget.h"
 
-class TestListItem : public QWidget
+namespace Tests
 {
-public:
-	TestListItem(QWidget* parent);
-	~TestListItem() = default;
+	class TestListItem : public QWidget
+	{
+	public:
+		TestListItem(QWidget* parent);
+		~TestListItem() = default;
 
-private:
-	QLabel* m_iconLabel;
-	QLabel* m_label;
-};
+	private:
+		QLabel* m_iconLabel;
+		QLabel* m_label;
+	};
 
-class TestWidget : public QWidget
-{
-	Q_OBJECT
+	class TestWidget : public QWidget
+	{
+		Q_OBJECT
 
-public:
-	TestWidget(QWidget *parent = nullptr);
-	~TestWidget();
+	public:
+		TestWidget(QWidget* parent = nullptr);
+		~TestWidget();
 
-private:
-	Ui::TestWidget ui;
-};
+	private:
+		Ui::TestWidget ui;
+	};
+}

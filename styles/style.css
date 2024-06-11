@@ -101,3 +101,30 @@ QLineEdit#todoItemInput{
     color: white;
 }
 
+/************** TODO LIST SETTINGS ****************************/
+
+QCheckBox#doneCheckBox{
+    background-color: transparent;
+    max-width: 28px;
+    max-height: 28px;
+    min-width: 28px;
+    min-height: 28px;
+
+}
+QCheckBox::indicator:checked#doneCheckBox{
+    image: url(images/circle-checked-yellow.png);
+}
+QCheckBox::indicator:unchecked#doneCheckBox{
+    image: url(images/circle.png);
+}
+
+QPushButton#impBtn{
+    background-color: transparent;
+    border: 1px solid #888888;
+    border-radius: 5px;
+    max-width: 28px;
+    max-height: 28px;
+    min-width: 28px;
+    min-height: 28px;
+}
+

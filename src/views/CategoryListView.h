@@ -6,50 +6,54 @@
 #include <QLineEdit>
 #include <QHBoxLayout>
 
-// Forward declares.
-class TaskFlowView;
-
-/* This file holds the definitions for custom QListWidget, QListWidgetItem and its children. */
-
-/* QLineEdit needs to be extended inorder to call the focusOutEvent. */
-class CategoryLineEdit : public QLineEdit
+namespace View
 {
-	Q_OBJECT
+	// Forward declares.
+	class TaskFlowView;
 
-public:
-	explicit CategoryLineEdit(QWidget* parent);
-	~CategoryLineEdit() override = default;
+	/* This file holds the definitions for custom QListWidget, QListWidgetItem and its children. */
 
-signals:
-	void focusChanged();
+	/* QLineEdit needs to be extended inorder to call the focusOutEvent. */
+	class CategoryLineEdit : public QLineEdit
+	{
+		Q_OBJECT
 
-protected:
-	void focusOutEvent(QFocusEvent* event) override;
-};
+	public:
+		explicit CategoryLineEdit(QWidget* parent);
+		~CategoryLineEdit() override = default;
 
-class CategoryListItem : public QWidget
-{
-	Q_OBJECT
+	signals:
+		void focusChanged();
 
-public:
-	explicit CategoryListItem(TaskFlowView* mainView, QWidget* parent);
-	~CategoryListItem() override = default;
+	protected:
+		void focusOutEvent(QFocusEvent* event) override;
+	};
 
-	QString getCategoryName() const;
-	void setCategoryName(const QString& rename) const;
-	void setEditable(bool enabled) const;
-	void setSelected(bool isSelected) const;
+	class CategoryListItem : public QWidget
+	{
+		Q_OBJECT
 
-signals:
-	void categoryNameUpdated(const QString& rename);
-	
+	public:
+		explicit CategoryListItem(const TaskFlowView* mainView, QWidget* parent);
+		~CategoryListItem() override = default;
 
-private:
-	QLabel* m_iconLabel;
-	CategoryLineEdit* m_categoryLineEdit;
-	QHBoxLayout* m_layout;
+		QString getCategoryName() const;
+		void setCategoryName(const QString& rename) const;
+		void setEditable(bool enabled) const;
+		void setSelected(bool isSelected) const;
 
-	// Pixmap objects - will be destroyed when this object get destroyed.
-	class QPixmap m_expandedIcon;
-	class QPixmap m_collapsedIcon;
-};
+	signals:
+		void categoryNameUpdated(const QString& rename);
+
+	private:
+		QLabel* m_iconLabel;
+		CategoryLineEdit* m_categoryLineEdit;
+		QHBoxLayout* m_layout;
+
+		// Pixmap objects - will be destroyed when this object get destroyed.
+		class QPixmap m_expandedIcon;
+		class QPixmap m_collapsedIcon;
+
+		int m_index;
+	};
+}

@@ -41,12 +41,36 @@
     <QtModules>core;gui;network;widgets</QtModules>
     <QtBuildConfig>debug</QtBuildConfig>
     <QtOptionsBuildLog>true</QtOptionsBuildLog>
+    <QtDeploy>false</QtDeploy>
+    <QtDeployCopyFiles>false</QtDeployCopyFiles>
+    <QtDeployDir>$(ProjectDir)Output\$(Configuration)</QtDeployDir>
+    <QtDeployNoPatchQt>true</QtDeployNoPatchQt>
+    <QtDeployNoPlugins>true</QtDeployNoPlugins>
+    <QtDeployNoQuickImport>true</QtDeployNoQuickImport>
+    <QtDeployNoTranslations>true</QtDeployNoTranslations>
+    <QtDeployNoSystemD3dCompiler>true</QtDeployNoSystemD3dCompiler>
+    <QtDeployNoVirtualKeyboard>true</QtDeployNoVirtualKeyboard>
+    <QtDeployWebkit2>skip</QtDeployWebkit2>
+    <QtDeployAngle>skip</QtDeployAngle>
+    <QtDeployNoOpenglSw>true</QtDeployNoOpenglSw>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'" Label="QtSettings">
     <QtInstall>6.7.0_msvc2019_64</QtInstall>
     <QtModules>core;gui;network;widgets</QtModules>
     <QtBuildConfig>release</QtBuildConfig>
     <QtOptionsBuildLog>true</QtOptionsBuildLog>
+    <QtDeploy>false</QtDeploy>
+    <QtDeployCopyFiles>false</QtDeployCopyFiles>
+    <QtDeployDir>$(ProjectDir)Output\$(Configuration)</QtDeployDir>
+    <QtDeployNoPatchQt>true</QtDeployNoPatchQt>
+    <QtDeployNoPlugins>true</QtDeployNoPlugins>
+    <QtDeployNoQuickImport>true</QtDeployNoQuickImport>
+    <QtDeployNoTranslations>true</QtDeployNoTranslations>
+    <QtDeployNoSystemD3dCompiler>true</QtDeployNoSystemD3dCompiler>
+    <QtDeployNoVirtualKeyboard>true</QtDeployNoVirtualKeyboard>
+    <QtDeployWebkit2>skip</QtDeployWebkit2>
+    <QtDeployAngle>skip</QtDeployAngle>
+    <QtDeployNoOpenglSw>true</QtDeployNoOpenglSw>
   </PropertyGroup>
   <Target Name="QtMsBuildNotFound" BeforeTargets="CustomBuild;ClCompile" Condition="!Exists('$(QtMsBuild)\qt.targets') or !Exists('$(QtMsBuild)\qt.props')">
     <Message Importance="High" Text="QtMsBuild: could not locate qt.targets, qt.props; project may not build correctly." />

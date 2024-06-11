@@ -4,39 +4,47 @@
 #include "ui_TaskFlow.h"
 
 #include <QPushButton>
+#include "CategoryListView.h"
 
-class TaskFlowView : public QWidget
+namespace View
 {
-	Q_OBJECT
+	class TaskFlowView : public QWidget
+	{
+		Q_OBJECT
 
-public:
-	explicit TaskFlowView(QWidget* parent = nullptr);
-	~TaskFlowView() override = default;
+	public:
+		explicit TaskFlowView(QWidget* parent = nullptr);
+		~TaskFlowView() override = default;
 
-	int getSelectedCategoryIndex() const;
-
-
-signals:
-	void categoryAdded(const QString& categoryName);
-	void todoAdded(int categoryId, const QString& todoText);
-
-public slots:
-	void onCategoryNameUpdated(const QString& rename);
-	void onTodoTextUpdated(const QString& rename);
+		int getSelectedCategoryIndex() const;
+		bool isValidCategorySelected();
 
 
-private slots:
-	void onSettingBtnPressed();
-	void onListOptionBtnPressed();
+	signals:
+		void newCategoryAdded(const QString& categoryName);
+		void categorySelected(int categoryIndex);
+		void todoAdded(int categoryId, const QString& todoText);
 
-	void onAddCategoryBtnPressed();
-	void onCategoryListItemSelectionChanged();
-	void onCategoryListItemClicked();
+	public slots:
+		void onCategoryNameUpdated(const QString& rename);
+		void onTodoTextUpdated(const QString& rename);
 
-	void onTodoItemAdded(const QString& todoText);
+	private slots:
+		void onSettingBtnPressed();
+		void onListOptionBtnPressed();
 
-private:
-	Ui::TaskFlowClass ui;
-	void setupUi() const;
-	void connectUi();
-};
+		void onAddCategoryBtnPressed();
+		void onCategoryListItemSelectionChanged();
+		void onCategoryListItemClicked();
+
+		void onTodoItemAdded(const QString& todoText);
+
+	private:
+		Ui::TaskFlowClass ui;
+		void setupUi() const;
+		void connectUi();
+
+		CategoryListItem* m_selectedCategory;
+		int m_selectedCategoryIndex;
+	};
+}
