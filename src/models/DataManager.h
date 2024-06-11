@@ -40,7 +40,7 @@ namespace Model
 		Q_OBJECT
 		// read file and fill to data objects during load, read the data objects and write to file when save.
 	public:
-		DataManager(QObject* parent = nullptr);
+		explicit DataManager(QObject* parent = nullptr);
 		~DataManager() override = default;
 		QList<Category> categories;
 

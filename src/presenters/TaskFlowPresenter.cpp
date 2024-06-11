@@ -32,5 +32,10 @@ namespace Presenter
 	void TaskFlowPresenter::onDataChanged()
 	{
 		qDebug() << "Data has changed: [" << m_model->categories.count() << "] records found!";
+		// TODO: read the categories data and make the ui.
+		for(const auto& category : m_model->categories)
+		{
+			
+		}
 	}
 }

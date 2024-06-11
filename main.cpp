@@ -11,6 +11,7 @@
 
 #include "utilities/ThemeManager.h"
 #include "models/DataManager.h"
+#include "presenters/TaskFlowPresenter.h"
 
 int main(int argc, char* argv[])
 {
@@ -23,6 +24,9 @@ int main(int argc, char* argv[])
 #else
 	/* Load and Save application data to Json, assuming ./data/data.json */
 	Model::DataManager dataManager;
+	View::TaskFlowView flowWindow;
+	Presenter::TaskFlowPresenter controller(&dataManager, &flowWindow);
+
 	dataManager.loadFromJson("data/sample.json");
 	QString debugStr = dataManager.toString();
 	qDebug() << "data: " << debugStr;
@@ -30,7 +34,6 @@ int main(int argc, char* argv[])
 
 	ThemeManager::instance().loadTheme(app);
 
-	View::TaskFlowView flowWindow;
 	flowWindow.setFixedSize(1024, 768);
 	flowWindow.show();
 

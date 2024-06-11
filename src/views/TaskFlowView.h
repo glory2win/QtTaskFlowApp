@@ -19,6 +19,9 @@ namespace View
 		int getSelectedCategoryIndex() const;
 		bool isValidCategorySelected();
 
+		void addNewCategoryItem();
+		void addNewTodoItem();
+
 
 	signals:
 		void newCategoryAdded(const QString& categoryName);

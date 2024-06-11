@@ -179,4 +179,14 @@ namespace View
 		bool categoryValid = ui.categoryList->count() != 0 && m_selectedCategory != nullptr;
 		return categoryValid;
 	}
+
+	void TaskFlowView::addNewCategoryItem()
+	{
+
+	}
+
+	void TaskFlowView::addNewTodoItem()
+	{
+
+	}
 }
