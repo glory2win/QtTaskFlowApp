@@ -5,6 +5,9 @@
 
 #include <QPushButton>
 #include "CategoryListView.h"
+#include "models/DataManager.h"
+
+
 
 namespace View
 {
@@ -19,8 +22,10 @@ namespace View
 		int getSelectedCategoryIndex() const;
 		bool isValidCategorySelected();
 
-		void addNewCategoryItem();
-		void addNewTodoItem();
+		void addCategoryItem(const QString& categoryName);
+		void addTodoItem(const QString& categoryName, const Model::Data::TodoItemData& todoData);
+
+		void updateLists();
 
 
 	signals:

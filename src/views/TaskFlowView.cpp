@@ -25,6 +25,7 @@ namespace View
 		return m_selectedCategoryIndex;
 	}
 
+	// *********************** UI SETUP ************************************
 
 	void TaskFlowView::setupUi() const
 	{
@@ -63,6 +64,8 @@ namespace View
 		ui.todoItemInput->setPlaceholderText(QString("Enter your task here.."));
 	}
 
+	// *********************** UI CONNECTION ************************************
+
 	void TaskFlowView::connectUi()
 	{
 		connect(ui.settingsBtn, &QPushButton::clicked, this, &TaskFlowView::onSettingBtnPressed);
@@ -82,7 +85,7 @@ namespace View
 	}
 
 
-	// Slots
+	// *********************** SLOTS ************************************
 
 	void TaskFlowView::onSettingBtnPressed()
 	{
@@ -174,19 +177,44 @@ namespace View
 		qDebug() << "Todo name has updated to: [" << rename << "] Func: " << __FUNCTION__;
 	}
 
+	// *********************** PUBLIC FUNCTIONS ************************************
+
 	bool TaskFlowView::isValidCategorySelected()
 	{
 		bool categoryValid = ui.categoryList->count() != 0 && m_selectedCategory != nullptr;
 		return categoryValid;
 	}
 
-	void TaskFlowView::addNewCategoryItem()
+	void TaskFlowView::addCategoryItem(const QString& categoryName)
 	{
+		CategoryListItem* itemWidget = new CategoryListItem(this, ui.categoryList);
+		QListWidgetItem* item = new QListWidgetItem(ui.categoryList);
+		item->setSizeHint(itemWidget->sizeHint());
+		ui.categoryList->setItemWidget(item, itemWidget);
+
+		itemWidget->setCategoryName(categoryName);
+	}
+
+	void TaskFlowView::addTodoItem(const QString& categoryName, const Model::Data::TodoItemData& todoData)
+	{
+		TodoListItem* itemWidget = new TodoListItem(this, ui.todoList);
+		QListWidgetItem* item = new QListWidgetItem(ui.todoList);
+		item->setSizeHint(itemWidget->sizeHint());
+		ui.todoList->setItemWidget(item, itemWidget);
+
+		itemWidget->setTotoText(todoData.todo);
+		itemWidget->setImportantStatus(todoData.isImportant);
+		itemWidget->setCompletedStatus(todoData.isCompleted);
+
+		itemWidget->setEditable(false);
 
 	}
 
-	void TaskFlowView::addNewTodoItem()
+	void TaskFlowView::updateLists()
 	{
+		QListWidgetItem* item = ui.categoryList->item(0);
+		CategoryListItem* catItem = qobject_cast<CategoryListItem*>(ui.categoryList->itemWidget(item));
+		catItem->setSelected(true);
 
 	}
 }

@@ -9,31 +9,34 @@
 
 namespace Model
 {
-	class TodoItemData
+	namespace Data
 	{
-	public:
-		QString todo;
-		bool isCompleted;
-		bool isImportant;
+		class TodoItemData
+		{
+		public:
+			QString todo;
+			bool isCompleted;
+			bool isImportant;
 
-		QJsonObject toJson() const;
-		void fromJson(const QJsonObject& json);
+			QJsonObject toJson() const;
+			void fromJson(const QJsonObject& json);
 
-		QString toString() const;
-	};
+			QString toString() const;
+		};
 
-	class Category
-	{
-	public:
-		QString name;
-		QList<TodoItemData> items;
-		bool isSelected;
+		class Category
+		{
+		public:
+			QString name;
+			QList<TodoItemData> items;
+			bool isSelected;
 
-		QJsonObject toJson() const;
-		void fromJson(const QJsonObject& json);
+			QJsonObject toJson() const;
+			void fromJson(const QJsonObject& json);
 
-		QString toString() const;
-	};
+			QString toString() const;
+		};
+	}
 
 	class DataManager : public QObject
 	{
@@ -42,7 +45,7 @@ namespace Model
 	public:
 		explicit DataManager(QObject* parent = nullptr);
 		~DataManager() override = default;
-		QList<Category> categories;
+		QList<Data::Category> categories;
 
 		void saveToJson(const QString& filePath);
 		void loadFromJson(const QString& filePath);

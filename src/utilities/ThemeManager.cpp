@@ -19,6 +19,8 @@ ThemeManager::ThemeManager()
 
 			m_titleFont = std::make_unique<QFont>(fontName, 28); // TODO: load the font size from QSettings.
 			m_itemFont = std::make_unique<QFont>(fontName, 16);
+			m_strikeFont = std::make_unique<QFont>(fontName, 16);
+			m_strikeFont->setStrikeOut(true);
 		}
 		else
 		{

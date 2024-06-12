@@ -24,6 +24,7 @@ public:
 
 	QFont& titleFont() { return *m_titleFont; }
 	QFont& itemFont() const { return *m_itemFont; }
+	QFont& strikeFont() const { return *m_strikeFont; }
 
 	void loadTheme(QApplication& app);
 
@@ -38,5 +39,6 @@ private:
 
 	std::unique_ptr<QFont> m_titleFont;
 	std::unique_ptr<QFont> m_itemFont; // TODO: assign different font for todo list item.
+	std::unique_ptr<QFont> m_strikeFont; // Qt's text-decoration in css is limited so need to create a new font for this.
 };
 

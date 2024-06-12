@@ -11,5 +11,6 @@
         <file>images/list.png</file>
         <file>images/circle.png</file>
         <file>images/circle-checked.png</file>
+        <file>images/star_filled.png</file>
     </qresource>
 </RCC>

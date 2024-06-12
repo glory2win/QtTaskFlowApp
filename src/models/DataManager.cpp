@@ -7,77 +7,81 @@
 
 namespace Model
 {
-	// ************* TO DO ITEM DATA *******************
-
-	QJsonObject TodoItemData::toJson() const
+	namespace Data
 	{
-		QJsonObject json;
-		json["todo"] = todo;
-		json["done"] = isCompleted;
-		json["imp"] = isImportant;
+		// ************* TO DO ITEM DATA *******************
 
-		return json;
-	}
-
-	void TodoItemData::fromJson(const QJsonObject& json)
-	{
-		todo = json["todo"].toString("No Work");
-		isCompleted = json["done"].toBool(false);
-		isImportant = json["imp"].toBool(false);
-	}
-
-	QString TodoItemData::toString() const
-	{
-		QString result;
-		result += todo + "\n completed: " + (isCompleted ? QLatin1String("true") : QLatin1String("false"));
-		return result;
-	}
-
-	// ************* CATEGORY ITEM DATA *******************
-
-	QJsonObject Category::toJson() const
-	{
-		QJsonObject jsonObject;
-		jsonObject["name"] = name;
-
-		QJsonArray jsonArray;
-		for (const auto& item : items)
+		QJsonObject TodoItemData::toJson() const
 		{
-			jsonArray.append(item.toJson());
+			QJsonObject json;
+			json["todo"] = todo;
+			json["done"] = isCompleted;
+			json["imp"] = isImportant;
+
+			return json;
 		}
 
-		jsonObject["items"] = jsonArray;
-
-		jsonObject["selected"] = isSelected;
-
-		return jsonObject;
-	}
-
-	void Category::fromJson(const QJsonObject& json)
-	{
-		name = json.value("name").toString("Untitled");
-		isSelected = json.value("selected").toBool(false);
-
-		QJsonArray itemsArray = json.value("items").toArray({});
-		items.clear();
-		for (const auto elm : itemsArray)
+		void TodoItemData::fromJson(const QJsonObject& json)
 		{
-			TodoItemData item;
-			item.fromJson(elm.toObject());
-			items.append(item);
+			todo = json["todo"].toString("No Work");
+			isCompleted = json["done"].toBool(false);
+			isImportant = json["imp"].toBool(false);
+		}
+
+		QString TodoItemData::toString() const
+		{
+			QString result;
+			result += todo + "\n completed: " + (isCompleted ? QLatin1String("true") : QLatin1String("false"));
+			return result;
+		}
+
+		// ************* CATEGORY ITEM DATA *******************
+
+		QJsonObject Category::toJson() const
+		{
+			QJsonObject jsonObject;
+			jsonObject["name"] = name;
+
+			QJsonArray jsonArray;
+			for (const auto& item : items)
+			{
+				jsonArray.append(item.toJson());
+			}
+
+			jsonObject["items"] = jsonArray;
+
+			jsonObject["selected"] = isSelected;
+
+			return jsonObject;
+		}
+
+		void Category::fromJson(const QJsonObject& json)
+		{
+			name = json.value("name").toString("Untitled");
+			isSelected = json.value("selected").toBool(false);
+
+			QJsonArray itemsArray = json.value("items").toArray({});
+			items.clear();
+			for (const auto elm : itemsArray)
+			{
+				TodoItemData item;
+				item.fromJson(elm.toObject());
+				items.append(item);
+			}
+		}
+
+		QString Category::toString() const
+		{
+			QString result;
+			result += name + "\n";
+			for (const auto& elm : items)
+			{
+				result += "\t" + elm.toString();
+			}
+			return result;
 		}
 	}
 
-	QString Category::toString() const
-	{
-		QString result;
-		result += name + "\n";
-		for (const auto& elm : items)
-		{
-			result += "\t" + elm.toString();
-		}
-		return result;
-	}
 	// ************* DATA MANAGER *******************
 
 	DataManager::DataManager(QObject* parent) : QObject(parent)
@@ -133,7 +137,7 @@ namespace Model
 			categories.clear();
 			for(const auto elm: jsonArray)
 			{
-				Category category;
+				Data::Category category;
 				category.fromJson(elm.toObject());
 				categories.append(category);
 			}

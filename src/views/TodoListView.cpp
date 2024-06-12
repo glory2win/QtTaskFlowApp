@@ -2,6 +2,8 @@
 
 #include <QWidget>
 #include <QHBoxLayout>
+#include <QPixmap>
+#include <QIcon>
 
 #include "TaskFlowView.h"
 #include "utilities/ThemeManager.h"
@@ -16,8 +18,7 @@ namespace View
 		this->setFrame(true);
 	}
 
-	TodoListItem::TodoListItem(TaskFlowView* mainView, QWidget* parent) : QWidget(parent),
-	                                                                      m_starIcon(QString(":/images/star.png"))
+	TodoListItem::TodoListItem(TaskFlowView* mainView, QWidget* parent) : QWidget(parent)
 	{
 		setObjectName("todoListItem");
 
@@ -29,8 +30,14 @@ namespace View
 		m_todoLineEdit->setAutoFillBackground(true);
 
 		m_impIconBtn = new QPushButton("", this);
-		QIcon impIcon(m_starIcon);
-		m_impIconBtn->setIcon(impIcon);
+
+		QPixmap normalPixmap(":/images/star.png");
+		m_starEmptyIcon = std::make_unique<QIcon>(normalPixmap);
+
+		QPixmap filledIcon(":/images/star_filled.png");
+		m_starFilledIcon = std::make_unique<QIcon>(filledIcon);
+
+		m_impIconBtn->setIcon(normalPixmap);
 		m_impIconBtn->setIconSize(QSize(20, 20));
 		m_impIconBtn->setObjectName("impBtn");
 
@@ -59,6 +66,18 @@ namespace View
 		});
 	}
 
+	bool TodoListItem::getCompletedStatus() const
+	{
+		return m_completedCheckBox->isChecked();
+	}
+
+	void TodoListItem::setCompletedStatus(const bool completed) const
+	{
+		m_completedCheckBox->setCheckState(completed ? Qt::CheckState::Checked : Qt::CheckState::Unchecked);
+		// todo: strike the text, see how to do that in Qt or create a font to do that :)
+		m_todoLineEdit->setFont(ThemeManager::instance().strikeFont());
+	}
+
 	QString TodoListItem::getTodoText() const
 	{
 		return m_todoLineEdit->text();
@@ -68,6 +87,12 @@ namespace View
 	{
 		m_todoLineEdit->setText(rename);
 	}
+
+	void TodoListItem::setImportantStatus(bool important) const
+	{
+		m_impIconBtn->setIcon(important ? *m_starFilledIcon : *m_starEmptyIcon);
+	}
+
 
 	void TodoListItem::setEditable(bool enabled) const
 	{

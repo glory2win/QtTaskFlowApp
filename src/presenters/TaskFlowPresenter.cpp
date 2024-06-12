@@ -35,7 +35,12 @@ namespace Presenter
 		// TODO: read the categories data and make the ui.
 		for(const auto& category : m_model->categories)
 		{
-			
+			m_view->addCategoryItem(category.name);
+			for(const auto& todo : category.items)
+			{
+				m_view->addTodoItem(category.name, todo);
+			}
 		}
+		m_view->updateLists();
 	}
 }

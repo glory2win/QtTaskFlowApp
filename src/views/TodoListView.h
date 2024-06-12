@@ -4,6 +4,7 @@
 #include <QMessageBox>
 #include <QCheckBox>
 #include <QPushButton>
+#include <memory>
 
 namespace View
 {
@@ -28,8 +29,14 @@ namespace View
 		explicit TodoListItem(TaskFlowView* mainView, QWidget* parent);
 		~TodoListItem() override = default;
 
+		bool getCompletedStatus() const;
+		void setCompletedStatus(bool completed) const;
+
 		QString getTodoText() const;
 		void setTotoText(const QString& rename) const;
+
+		void setImportantStatus(bool important) const;
+
 
 		void setEditable(bool enabled) const;
 
@@ -41,6 +48,7 @@ namespace View
 		TodoLineEdit* m_todoLineEdit;
 		QPushButton* m_impIconBtn;
 
-		class QPixmap m_starIcon;
+		std::unique_ptr<class QIcon> m_starEmptyIcon;
+		std::unique_ptr<class QIcon> m_starFilledIcon;
 	};
 }
