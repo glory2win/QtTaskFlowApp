@@ -74,8 +74,7 @@ namespace View
 	void TodoListItem::setCompletedStatus(const bool completed) const
 	{
 		m_completedCheckBox->setCheckState(completed ? Qt::CheckState::Checked : Qt::CheckState::Unchecked);
-		// todo: strike the text, see how to do that in Qt or create a font to do that :)
-		m_todoLineEdit->setFont(ThemeManager::instance().strikeFont());
+		m_todoLineEdit->setFont(completed? ThemeManager::instance().strikeFont() : ThemeManager::instance().itemFont());
 	}
 
 	QString TodoListItem::getTodoText() const

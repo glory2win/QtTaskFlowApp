@@ -1,0 +1,8 @@
+Dt: 12.06.2024
+App is at stable state, I can able to read JSON data and creating UIs with status successfully.
+Now need to add the newly created todo items into the selecte/currCategory in presenter.
+Call presenter's slot from view (emit) so it will gather needed information from loaded stuff
+and call view to create the to do item. In this way it will be sync to model.
+
+Later can implement context menu to delete todo items or categories, first emit, handle in presenter
+update ui.

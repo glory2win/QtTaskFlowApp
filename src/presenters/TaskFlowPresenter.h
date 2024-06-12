@@ -20,13 +20,15 @@ namespace Presenter
 	private slots:
 		//View
 		void onNewCategoryAdded(const QString& name);
-		void onCategorySelected(int categoryIndex);
+		void onCategorySelected(const CategoryListItem* category);
 		void onCategoryNameChanged(const QString& rename);
 		// Model
-		void onDataChanged();
+		void onDataLoaded();
 
 	private:
 		DataManager* m_model;
 		TaskFlowView* m_view;
+
+		Data::Category* m_currCategoryData;
 	};
 }

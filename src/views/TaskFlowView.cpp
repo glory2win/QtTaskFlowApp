@@ -135,10 +135,7 @@ namespace View
 				ui.categoryTitleLabel->setText(catItem->getCategoryName());
 				m_selectedCategoryIndex = i;
 				m_selectedCategory = catItem;
-				emit categorySelected(m_selectedCategoryIndex);
-				// The category data manipulation and ui update is handling in the presenter.
-
-				//qDebug() << "Selected Category: [index: " << m_selectedCategoryIndex << "] name: [" << m_selectedCategory->getCategoryName() << "] has items: [" << m_selectedCategory->getd
+				emit categorySelected(catItem);
 			}
 			catItem->setSelected(item->isSelected());
 		}
@@ -146,6 +143,12 @@ namespace View
 
 	void TaskFlowView::onCategoryListItemClicked()
 	{
+		QList< QListWidgetItem*> selection = ui.categoryList->selectedItems();
+		QListWidgetItem* selected = selection[0];
+		if(const CategoryListItem* categoryItem = qobject_cast<CategoryListItem*>(ui.categoryList->itemWidget(selected)))
+		{
+			emit categorySelected(categoryItem);
+		}
 	}
 
 	void TaskFlowView::onTodoItemAdded(const QString& todoText)
@@ -195,7 +198,7 @@ namespace View
 		itemWidget->setCategoryName(categoryName);
 	}
 
-	void TaskFlowView::addTodoItem(const QString& categoryName, const Model::Data::TodoItemData& todoData)
+	void TaskFlowView::addTodoItem(const Model::Data::TodoItemData& todoData)
 	{
 		TodoListItem* itemWidget = new TodoListItem(this, ui.todoList);
 		QListWidgetItem* item = new QListWidgetItem(ui.todoList);
@@ -207,14 +210,32 @@ namespace View
 		itemWidget->setCompletedStatus(todoData.isCompleted);
 
 		itemWidget->setEditable(false);
+		item->setSelected(true);
 
 	}
 
-	void TaskFlowView::updateLists()
+	void TaskFlowView::updateCategoryList()
 	{
-		QListWidgetItem* item = ui.categoryList->item(0);
-		CategoryListItem* catItem = qobject_cast<CategoryListItem*>(ui.categoryList->itemWidget(item));
-		catItem->setSelected(true);
+		// Disable all after creation
+		const int count = ui.categoryList->count();
+		for(int i=0; i < count; ++i)
+		{
+			QListWidgetItem* item = ui.categoryList->item(i);
+			CategoryListItem* catItem = qobject_cast<CategoryListItem*>(ui.categoryList->itemWidget(item));
+			catItem->setEditable(false);
+		}
 
+		// Now select one list from either last selection or last updated one or just select top one.
+		QListWidgetItem* selectedItem = ui.categoryList->item(0);
+		selectedItem->setSelected(true); // make this item selected as widget.
+		CategoryListItem* catItemSelected = qobject_cast<CategoryListItem*>(ui.categoryList->itemWidget(selectedItem));
+
+		emit categorySelected(catItemSelected); // This will trigger UI creation of to do items from presenter. This syncs with model.
+
+	}
+
+	void TaskFlowView::clearTotoList()
+	{
+		ui.todoList->clear();
 	}
 }

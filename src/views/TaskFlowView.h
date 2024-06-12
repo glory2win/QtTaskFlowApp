@@ -23,14 +23,16 @@ namespace View
 		bool isValidCategorySelected();
 
 		void addCategoryItem(const QString& categoryName);
-		void addTodoItem(const QString& categoryName, const Model::Data::TodoItemData& todoData);
+		void addTodoItem(const Model::Data::TodoItemData& todoData);
 
-		void updateLists();
+		void updateCategoryList();
+
+		void clearTotoList();
 
 
 	signals:
 		void newCategoryAdded(const QString& categoryName);
-		void categorySelected(int categoryIndex);
+		void categorySelected(const CategoryListItem* categoryItem);
 		void todoAdded(int categoryId, const QString& todoText);
 
 	public slots:

@@ -6,7 +6,7 @@ namespace Presenter
 		m_model(model), m_view(view)
 	{
 		// Model connections
-		connect(model, &DataManager::dataChanged, this, &TaskFlowPresenter::onDataChanged);
+		connect(model, &DataManager::dataChanged, this, &TaskFlowPresenter::onDataLoaded);
 
 		// View connections
 		connect(view, &TaskFlowView::newCategoryAdded, this, &TaskFlowPresenter::onNewCategoryAdded);
@@ -18,29 +18,36 @@ namespace Presenter
 		qDebug() << "New Category Added" << __FUNCTION__;
 	}
 
-	void TaskFlowPresenter::onCategorySelected(int categoryIndex)
+	void TaskFlowPresenter::onCategorySelected(const CategoryListItem* category)
 	{
-		qDebug() << "[" << categoryIndex << "] has selected" << __FUNCTION__;
-		// TODO: grab the category from the list from loaded json in the memory.
-		// TODO: first use sample data.json to display and update the data later plan fresh app install and no data availability.
+		qDebug() << "[" << category->getCategoryName() << "] has selected" << __FUNCTION__;
+		for (auto& catData : m_model->categories)
+		{
+			if (catData.name == category->getCategoryName())
+			{
+				m_currCategoryData = &catData; // Cache this as selected category to add to do items later easily.
+				m_view->clearTotoList();
+				for (const auto& todo : catData.items)
+				{
+					m_view->addTodoItem(todo);
+				}
+			}
+		}
 	}
 
 	void TaskFlowPresenter::onCategoryNameChanged(const QString& rename)
 	{
 	}
 
-	void TaskFlowPresenter::onDataChanged()
+	void TaskFlowPresenter::onDataLoaded()
 	{
 		qDebug() << "Data has changed: [" << m_model->categories.count() << "] records found!";
 		// TODO: read the categories data and make the ui.
-		for(const auto& category : m_model->categories)
+		for (const auto& category : m_model->categories)
 		{
 			m_view->addCategoryItem(category.name);
-			for(const auto& todo : category.items)
-			{
-				m_view->addTodoItem(category.name, todo);
-			}
 		}
-		m_view->updateLists();
+		m_view->updateCategoryList();
+		// This will update the view, the view will trigger to do items creation in this presenter.
 	}
 }
