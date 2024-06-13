@@ -38,18 +38,6 @@ namespace View
 		m_impCheck = new QCheckBox(this);
 		m_impCheck->setObjectName("impCheckBox");
 
-		/*
-		QPixmap normalPixmap(":/images/star.png");
-		m_starEmptyIcon = std::make_unique<QIcon>(normalPixmap);
-
-		QPixmap filledIcon(":/images/star_filled.png");
-		m_starFilledIcon = std::make_unique<QIcon>(filledIcon);
-
-		m_impCheck->setIcon(normalPixmap);
-		m_impCheck->setIconSize(QSize(20, 20));
-		m_impCheck->setObjectName("impBtn");
-		*/
-
 		auto layout = new QHBoxLayout(this);
 		layout->addWidget(m_completedCheck);
 		layout->addWidget(m_todoLineEdit);

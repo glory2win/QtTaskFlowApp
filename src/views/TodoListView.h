@@ -49,9 +49,6 @@ namespace View
 		TodoLineEdit* m_todoLineEdit;
 		QCheckBox* m_impCheck;
 
-		std::unique_ptr<class QIcon> m_starEmptyIcon;
-		std::unique_ptr<class QIcon> m_starFilledIcon;
-
 		int m_id;
 	};
 }

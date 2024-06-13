@@ -130,31 +130,29 @@ namespace Model
 		QJsonDocument jsonDoc = QJsonDocument::fromJson(data);
 		if (!jsonDoc.isNull() && jsonDoc.isObject())
 		{
-
 			const QJsonObject& jsonObj = jsonDoc.object();
 			const QJsonValue& jsonValue = jsonObj.value("categories");
 			const QJsonArray& jsonArray = jsonValue.toArray();
 			categories.clear();
-			for(const auto elm: jsonArray)
+			for (const auto elm : jsonArray)
 			{
 				Data::Category category;
 				category.fromJson(elm.toObject());
 				categories.append(category);
 			}
+			emit dataChanged();
 		}
 		else
 		{
 			qWarning() << "Unable to read the JSON document, it may be null or not an object!";
 		}
-
-		emit dataChanged();
 	}
 
 	QString DataManager::toString() const
 	{
 		QString result;
 		result += "{\n";
-		for(const auto& category: categories)
+		for (const auto& category : categories)
 		{
 			result += category.toString();
 			result += "\n\n";
@@ -162,6 +160,12 @@ namespace Model
 		result += "\n}";
 
 		return result;
+	}
+
+	void DataManager::onDataSaved()
+	{
+		saveToJson("data/sample.json");
+		qDebug() << "Json file has been updated at: data/sample.json" << __FUNCTION__;
 	}
 
 	QJsonArray DataManager::categoriesToJson() const

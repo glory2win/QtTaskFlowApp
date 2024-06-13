@@ -56,6 +56,9 @@ namespace Model
 	signals:
 		void dataChanged();
 
+	public slots:
+		void onDataSaved();
+
 	private:
 		QJsonArray categoriesToJson() const;
 	};

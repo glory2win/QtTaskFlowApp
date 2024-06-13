@@ -17,11 +17,15 @@ namespace Presenter
 
 		~TaskFlowPresenter() override = default;
 
+	signals:
+		void dataSaved();
+
 	private slots:
 		//View
 		void onNewCategoryAdded(const QString& name);
 		void onCategorySelected(const CategoryListItem* category);
 		void onCategoryNameChanged(const QString& rename);
+		void onTodoAdded(const QString& categoryName, const QString& todoText);
 		// Model
 		void onDataLoaded();
 

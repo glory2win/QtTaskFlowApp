@@ -157,7 +157,7 @@ namespace View
 		{
 			return;
 		}
-		qDebug() << "A new todo item has been added to the list." << __FUNCTION__;
+		qDebug() << "A new todo item has been added to the list: " << todoText << __FUNCTION__;
 
 		TodoListItem* itemWidget = new TodoListItem(this, ui.todoList);
 		QListWidgetItem* item = new QListWidgetItem(ui.todoList);

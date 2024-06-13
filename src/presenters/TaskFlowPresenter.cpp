@@ -7,10 +7,12 @@ namespace Presenter
 	{
 		// Model connections
 		connect(model, &DataManager::dataChanged, this, &TaskFlowPresenter::onDataLoaded);
+		connect(this, &TaskFlowPresenter::dataSaved, m_model, &DataManager::onDataSaved);
 
 		// View connections
 		connect(view, &TaskFlowView::newCategoryAdded, this, &TaskFlowPresenter::onNewCategoryAdded);
 		connect(view, &TaskFlowView::categorySelected, this, &TaskFlowPresenter::onCategorySelected);
+		connect(view, &TaskFlowView::todoAdded, this, &TaskFlowPresenter::onTodoAdded);
 	}
 
 	void TaskFlowPresenter::onNewCategoryAdded(const QString& name)
@@ -37,6 +39,18 @@ namespace Presenter
 
 	void TaskFlowPresenter::onCategoryNameChanged(const QString& rename)
 	{
+	}
+
+	void TaskFlowPresenter::onTodoAdded(const QString& categoryName, const QString& todoText)
+	{
+		qDebug() << todoText << "has been added to " << categoryName << " list." << __FUNCTION__;
+		Data::TodoItemData todoData;
+		todoData.todo = todoText;
+		todoData.isCompleted = false;
+		todoData.isImportant = false;
+		m_currCategoryData->items.append(todoData);
+
+		emit dataSaved();
 	}
 
 	void TaskFlowPresenter::onDataLoaded()
