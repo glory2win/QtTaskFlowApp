@@ -166,7 +166,17 @@ namespace View
 
 		itemWidget->setTotoText(todoText);
 
-		emit todoAdded(m_selectedCategoryIndex, itemWidget->getTodoText());
+		emit todoAdded(m_selectedCategory->getCategoryName(), itemWidget->getTodoText());
+	}
+
+	void TaskFlowView::onTodoItemMarkedDone(bool done)
+	{
+
+	}
+
+	void TaskFlowView::onTodoItemMarkedImp(bool imp)
+	{
+
 	}
 
 	void TaskFlowView::onCategoryNameUpdated(const QString& rename)
@@ -178,6 +188,11 @@ namespace View
 	void TaskFlowView::onTodoTextUpdated(const QString& rename)
 	{
 		qDebug() << "Todo name has updated to: [" << rename << "] Func: " << __FUNCTION__;
+	}
+
+	void TaskFlowView::onTodoDoneStatusUpdated(bool done)
+	{
+		qDebug() << "Category: " + m_selectedCategory->getCategoryName() << " todo id: ";
 	}
 
 	// *********************** PUBLIC FUNCTIONS ************************************

@@ -33,11 +33,12 @@ namespace View
 	signals:
 		void newCategoryAdded(const QString& categoryName);
 		void categorySelected(const CategoryListItem* categoryItem);
-		void todoAdded(int categoryId, const QString& todoText);
+		void todoAdded(const QString& categoryName, const QString& todoText);
 
 	public slots:
 		void onCategoryNameUpdated(const QString& rename);
 		void onTodoTextUpdated(const QString& rename);
+		void onTodoDoneStatusUpdated(bool done);
 
 	private slots:
 		void onSettingBtnPressed();
@@ -48,6 +49,8 @@ namespace View
 		void onCategoryListItemClicked();
 
 		void onTodoItemAdded(const QString& todoText);
+		void onTodoItemMarkedDone(bool done);
+		void onTodoItemMarkedImp(bool imp);
 
 	private:
 		Ui::TaskFlowClass ui;

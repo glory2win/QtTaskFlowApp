@@ -111,11 +111,29 @@ QCheckBox#doneCheckBox{
     min-height: 28px;
 
 }
+
 QCheckBox::indicator:checked#doneCheckBox{
     image: url(images/circle-checked-yellow.png);
 }
 QCheckBox::indicator:unchecked#doneCheckBox{
     image: url(images/circle.png);
+}
+
+
+QCheckBox#impCheckBox{
+    background-color: transparent;
+    max-width: 28px;
+    max-height: 28px;
+    min-width: 28px;
+    min-height: 28px;
+
+}
+
+QCheckBox::indicator:checked#impCheckBox{
+    image: url(images/star_filled.png);
+}
+QCheckBox::indicator:unchecked#impCheckBox{
+    image: url(images/star.png);
 }
 
 QPushButton#impBtn{

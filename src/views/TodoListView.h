@@ -42,13 +42,16 @@ namespace View
 
 	signals:
 		void todoTextUpdated(const QString& rename);
+		void todoDoneStatusUpdated(bool done);
 
 	private:
-		QCheckBox* m_completedCheckBox;
+		QCheckBox* m_completedCheck;
 		TodoLineEdit* m_todoLineEdit;
-		QPushButton* m_impIconBtn;
+		QCheckBox* m_impCheck;
 
 		std::unique_ptr<class QIcon> m_starEmptyIcon;
 		std::unique_ptr<class QIcon> m_starFilledIcon;
+
+		int m_id;
 	};
 }
