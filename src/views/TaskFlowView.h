@@ -39,6 +39,7 @@ namespace View
 		void onCategoryNameUpdated(const QString& rename);
 		void onTodoTextUpdated(const QString& rename);
 		void onTodoDoneStatusUpdated(bool done);
+		void onTodoCheckStatusUpdated(bool imp);
 
 	private slots:
 		void onSettingBtnPressed();

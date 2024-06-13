@@ -1,44 +1,51 @@
 {
-  "categories": [
-    {
-      "name": "Groceries",
-      "items": [
+    "categories": [
         {
-          "todo": "apple",
-          "done": true,
-          "imp": false
+            "items": [
+                {
+                    "done": true,
+                    "imp": false,
+                    "todo": "apple"
+                },
+                {
+                    "done": true,
+                    "imp": false,
+                    "todo": "banana"
+                },
+                {
+                    "done": false,
+                    "imp": true,
+                    "todo": "orange"
+                },
+                {
+                    "done": false,
+                    "imp": false,
+                    "todo": "test"
+                }
+            ],
+            "name": "Groceries",
+            "selected": false
         },
         {
-          "todo": "banana",
-          "done": true,
-          "imp": false
-        },
-        {
-          "todo": "orange",
-          "done": false,
-          "imp": true
+            "items": [
+                {
+                    "done": true,
+                    "imp": false,
+                    "todo": "italy"
+                },
+                {
+                    "done": true,
+                    "imp": false,
+                    "todo": "norway"
+                },
+                {
+                    "done": false,
+                    "imp": true,
+                    "todo": "denmark"
+                }
+            ],
+            "name": "Travel",
+            "selected": false
         }
-      ]
-    },
-    {
-      "name": "Travel",
-      "items": [
-        {
-          "todo": "italy",
-          "done": true,
-          "imp": false
-        },
-        {
-          "todo": "norway",
-          "done": true,
-          "imp": false
-        },
-        {
-          "todo": "denmark",
-          "done": false,
-          "imp": true
-        }
-      ]
-    }
-  ]
+    ]
 }

@@ -43,6 +43,7 @@ namespace View
 	signals:
 		void todoTextUpdated(const QString& rename);
 		void todoDoneStatusUpdated(bool done);
+		void todoCheckStatusUpdated(bool imp);
 
 	private:
 		QCheckBox* m_completedCheck;

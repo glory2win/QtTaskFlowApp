@@ -195,6 +195,11 @@ namespace View
 		qDebug() << "Category: " + m_selectedCategory->getCategoryName() << " todo id: ";
 	}
 
+	void TaskFlowView::onTodoCheckStatusUpdated(bool imp)
+	{
+		qDebug() << "Category: " + m_selectedCategory->getCategoryName() << " check status";
+	}
+
 	// *********************** PUBLIC FUNCTIONS ************************************
 
 	bool TaskFlowView::isValidCategorySelected()

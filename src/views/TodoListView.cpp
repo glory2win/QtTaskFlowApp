@@ -55,6 +55,7 @@ namespace View
 
 		connect(this, &TodoListItem::todoTextUpdated, mainView, &TaskFlowView::onTodoTextUpdated);
 		connect(this, &TodoListItem::todoDoneStatusUpdated, mainView, &TaskFlowView::onTodoDoneStatusUpdated);
+		connect(this, &TodoListItem::todoCheckStatusUpdated, mainView, &TaskFlowView::onTodoCheckStatusUpdated);
 
 		connect(m_todoLineEdit, &QLineEdit::editingFinished, [&]()
 		{
@@ -62,8 +63,10 @@ namespace View
 			emit todoTextUpdated(m_todoLineEdit->text());
 		});
 
-		connect(m_impCheck, &QPushButton::clicked, [&]()
+		connect(m_impCheck, &QCheckBox::checkStateChanged, [&]()
 		{
+			const bool isImp = m_impCheck->checkState() == Qt::CheckState::Checked;
+			emit todoCheckStatusUpdated(isImp);
 			qDebug() << "Marked as important " << __FUNCTION__;
 		});
 
