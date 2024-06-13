@@ -102,12 +102,10 @@ namespace Model
 			qWarning() << "Couldn't open the file for write at " << filePath;
 			return;
 		}
-
-		const QJsonArray jsonArray = categoriesToJson();
-		QJsonDocument saveDoc(jsonArray);
+		QJsonObject jsonObj;
+		jsonObj["categories"] = categoriesToJson();
+		QJsonDocument saveDoc(jsonObj);
 		file.write(saveDoc.toJson());
-
-		// emit dataChanged();
 	}
 
 	void DataManager::loadFromJson(const QString& filePath)
