@@ -19,6 +19,7 @@ namespace Presenter
 
 	signals:
 		void dataSaved();
+		void updateAllCategoryItemNames(QList<QString> nameList);
 
 	private slots:
 		//View

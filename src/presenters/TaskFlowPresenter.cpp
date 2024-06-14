@@ -9,17 +9,36 @@ namespace Presenter
 		connect(model, &DataManager::dataChanged, this, &TaskFlowPresenter::onDataLoaded);
 		connect(this, &TaskFlowPresenter::dataSaved, m_model, &DataManager::onDataSaved);
 
-		// View connections
+		// From View connections
 		connect(view, &TaskFlowView::newCategoryAdded, this, &TaskFlowPresenter::onNewCategoryAdded);
 		connect(view, &TaskFlowView::categorySelected, this, &TaskFlowPresenter::onCategorySelected);
 		connect(view, &TaskFlowView::todoAdded, this, &TaskFlowPresenter::onTodoAdded);
 		connect(view, &TaskFlowView::updateTodoDoneStatus, this, &TaskFlowPresenter::onUpdateTodoDoneStatus);
 		connect(view, &TaskFlowView::updateTodoImpStatus, this, &TaskFlowPresenter::onUpdateTodoImpStatus);
+
+		// To View Connections
+		connect(this, &TaskFlowPresenter::updateAllCategoryItemNames, m_view, &TaskFlowView::onUpdateAllCategoryNames);
 	}
 
 	void TaskFlowPresenter::onNewCategoryAdded(const QString& name)
 	{
 		qDebug() << "New Category Added" << __FUNCTION__;
+		// TODO: find if the category already exists and then append number. Eg Untitled 1, Groceries 2
+		QList<QString> list;
+		QString categoryName = name;
+		for(int i=0; i < m_model->categories.count(); ++i)
+		{
+			if(m_model->categories[i].name == categoryName)
+			{
+				categoryName += "_dup"; // to make sure the category names are unique, lets append "_dup" when create or duplicate the category with same name.
+			}
+			list.append(categoryName);
+		}
+		m_model->categories.append(Data::Category{categoryName}); // Let's create the object directly in the list to avoid the need of temporary local variables.
+		list.append(categoryName); // add the newly created name too.
+		m_currCategoryData = &m_model->categories.last(); // Make sure only refer the latest obj from the list, don't refer any local variables as they will get destroyed after this function scope.		
+		
+		emit updateAllCategoryItemNames(list);
 	}
 
 	void TaskFlowPresenter::onCategorySelected(const CategoryListItem* category)

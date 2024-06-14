@@ -118,6 +118,13 @@ namespace View
 		itemWidget->setEditable(true);
 		item->setSelected(true);
 		onCategoryListItemSelectionChanged();
+
+		ui.todoList->clear(); // clear the current lists to do as the current list is set by this new category.
+
+		m_selectedCategory = itemWidget;
+		m_selectedCategoryIndex = ui.categoryList->count() - 1;
+
+		emit newCategoryAdded(itemWidget->getCategoryName());
 	}
 
 	void TaskFlowView::onCategoryListItemSelectionChanged()
@@ -179,6 +186,17 @@ namespace View
 		ui.categoryTitleLabel->setText(rename);
 	}
 
+	void TaskFlowView::onUpdateAllCategoryNames(QList<QString> list)
+	{
+		int itemCount = ui.categoryList->count();
+		for(int i=0; i < itemCount; ++i)
+		{
+			QListWidgetItem* item = ui.categoryList->item(i);
+			CategoryListItem* catItem = qobject_cast<CategoryListItem*>(ui.categoryList->itemWidget(item));
+			catItem->setCategoryName(list[i]);
+		}
+	}
+
 	void TaskFlowView::onTodoTextUpdated(const QString& rename)
 	{
 		qDebug() << "Todo name has updated to: [" << rename << "] Func: " << __FUNCTION__;
@@ -205,6 +223,7 @@ namespace View
 		return categoryValid;
 	}
 
+	// *************** SAVE & LOAD SUPPORT
 	void TaskFlowView::addCategoryItem(const QString& categoryName)
 	{
 		CategoryListItem* itemWidget = new CategoryListItem(this, ui.categoryList);

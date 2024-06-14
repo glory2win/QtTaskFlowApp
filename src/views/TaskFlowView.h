@@ -22,6 +22,7 @@ namespace View
 		int getSelectedCategoryIndex() const;
 		bool isValidCategorySelected();
 
+		// ******************* SAVE & LOAD SUPPORT *******************
 		void addCategoryItem(const QString& categoryName);
 		void addTodoItem(const Model::Data::TodoItemData& todoData);
 
@@ -31,8 +32,12 @@ namespace View
 
 
 	signals:
+		// Signals for presenter
 		void newCategoryAdded(const QString& categoryName);
+		void categoryNameChanged(const QString& newCategoryName);
+
 		void categorySelected(const CategoryListItem* categoryItem);
+
 		void todoAdded(const QString& categoryName, const QString& todoText);
 		void updateTodoDoneStatus(int todoIndex, bool done); // Assuming the to do item has belongs to selected category.
 		void updateTodoImpStatus(int todoIndex, bool imp);
@@ -42,6 +47,7 @@ namespace View
 	public slots:
 		// Category item signals slot
 		void onCategoryNameUpdated(const QString& rename);
+		void onUpdateAllCategoryNames(QList<QString> list);
 
 		// To do item's signals slots
 		void onTodoTextUpdated(const QString& rename);
