@@ -58,12 +58,23 @@ namespace Presenter
 	void TaskFlowPresenter::onUpdateTodoDoneStatus(int todoIndex, bool done)
 	{
 		qDebug() << "Todo item index [" << todoIndex << "] done status has updated with [ " << done << "] status in the database and saved.";
+		if (todoIndex >= 0 && todoIndex < m_currCategoryData->items.count())
+		{
+			auto& todoData = m_currCategoryData->items[todoIndex];
+			todoData.isCompleted = done;
+			emit dataSaved();
+		}		
 	}
 
 	void TaskFlowPresenter::onUpdateTodoImpStatus(int todoIndex, bool imp)
 	{
 		qDebug() << "Todo item index [" << todoIndex << "] imp status has updated with [ " << imp << "] status in the database and saved.";
-
+		if (todoIndex >= 0 && todoIndex < m_currCategoryData->items.count())
+		{
+			auto& todoData = m_currCategoryData->items[todoIndex];
+			todoData.isImportant = imp;
+			emit dataSaved();
+		}
 	}
 
 	void TaskFlowPresenter::onDataLoaded()
