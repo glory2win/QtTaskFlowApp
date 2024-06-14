@@ -146,3 +146,9 @@ QPushButton#impBtn{
     min-height: 28px;
 }
 
+QLineEdit#todoLineEdit{
+    background-color: #d1d1d1;
+    border: #888888;
+    border-radius: 3px;
+    color: #000000;
+}
