@@ -4,6 +4,7 @@
 #include "ui_TaskFlow.h"
 
 #include <QPushButton>
+#include <QPoint>
 #include "CategoryListView.h"
 #include "models/DataManager.h"
 
@@ -63,6 +64,9 @@ namespace View
 		void onCategoryListItemClicked();
 
 		void onTodoItemAdded(const QString& todoText);
+
+	private:
+		void showCategoryContextMenu(const QPoint& pos);
 
 	private:
 		Ui::TaskFlowClass ui;

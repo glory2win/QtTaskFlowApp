@@ -7,6 +7,8 @@
 #include "CategoryListView.h"
 #include "TodoListView.h"
 #include <QListWidgetItem>
+
+#include "views/ContextMenu.h"
 #include "utilities/ThemeManager.h"
 
 namespace View
@@ -82,6 +84,9 @@ namespace View
 			onTodoItemAdded(ui.todoItemInput->text());
 			ui.todoItemInput->clear();
 		});
+
+		// Context menus
+		connect(ui.categoryList, &QListWidget::customContextMenuRequested, this, &TaskFlowView::showCategoryContextMenu);
 	}
 
 
@@ -150,9 +155,10 @@ namespace View
 
 	void TaskFlowView::onCategoryListItemClicked()
 	{
-		QList< QListWidgetItem*> selection = ui.categoryList->selectedItems();
+		QList<QListWidgetItem*> selection = ui.categoryList->selectedItems();
 		QListWidgetItem* selected = selection[0];
-		if(const CategoryListItem* categoryItem = qobject_cast<CategoryListItem*>(ui.categoryList->itemWidget(selected)))
+		if (const CategoryListItem* categoryItem = qobject_cast<CategoryListItem*>(
+			ui.categoryList->itemWidget(selected)))
 		{
 			emit categorySelected(categoryItem);
 		}
@@ -175,10 +181,22 @@ namespace View
 		// To do Item's id is where it is in the list, this will get the model's data too so assuming its position in the list and category's data are same.
 		itemWidget->index = ui.todoList->count() - 1;
 
-		qDebug() << "A new todo: [" << todoText<< "] has added with index: [" << itemWidget->index << "]" << __FUNCTION__;
+		qDebug() << "A new todo: [" << todoText << "] has added with index: [" << itemWidget->index << "]" <<
+			__FUNCTION__;
 
 		emit todoAdded(m_selectedCategory->getCategoryName(), itemWidget->getTodoText());
 	}
+
+	void TaskFlowView::showCategoryContextMenu(const QPoint& pos)
+	{
+		QListWidgetItem* item = ui.categoryList->itemAt(pos);
+		if (!item)
+			return;
+
+		ContextMenu* contextMenu = ContextMenu::instance(this);
+		contextMenu->exec(ui.categoryList->mapToGlobal(pos));
+	}
+
 
 	void TaskFlowView::onCategoryNameUpdated(const QString& rename)
 	{
@@ -189,7 +207,7 @@ namespace View
 	void TaskFlowView::onUpdateAllCategoryNames(QList<QString> list)
 	{
 		int itemCount = ui.categoryList->count();
-		for(int i=0; i < itemCount; ++i)
+		for (int i = 0; i < itemCount; ++i)
 		{
 			QListWidgetItem* item = ui.categoryList->item(i);
 			CategoryListItem* catItem = qobject_cast<CategoryListItem*>(ui.categoryList->itemWidget(item));
@@ -200,18 +218,19 @@ namespace View
 	void TaskFlowView::onTodoTextUpdated(const QString& rename)
 	{
 		qDebug() << "Todo name has updated to: [" << rename << "] Func: " << __FUNCTION__;
-		
 	}
 
 	void TaskFlowView::onTodoItemDoneStatusUpdated(int todoIndex, bool done)
 	{
-		qDebug() << "Category: [" + m_selectedCategory->getCategoryName() << "] todo id: [" << todoIndex << "] with done status: [" << done << "]";
+		qDebug() << "Category: [" + m_selectedCategory->getCategoryName() << "] todo id: [" << todoIndex <<
+			"] with done status: [" << done << "]";
 		emit updateTodoDoneStatus(todoIndex, done);
 	}
 
 	void TaskFlowView::onTodoItemImpStatusUpdated(int todoIndex, bool imp)
 	{
-		qDebug() << "Category: [" + m_selectedCategory->getCategoryName() << "] todo id: [" << todoIndex << "] with imp status: [" << imp << "]";
+		qDebug() << "Category: [" + m_selectedCategory->getCategoryName() << "] todo id: [" << todoIndex <<
+			"] with imp status: [" << imp << "]";
 		updateTodoImpStatus(todoIndex, imp);
 	}
 
@@ -250,14 +269,15 @@ namespace View
 
 		itemWidget->index = ui.todoList->count() - 1;
 
-		qDebug() << "A new todo: [" << todoData.todo << "] has added with index: [" << itemWidget->index << "]" << __FUNCTION__;
+		qDebug() << "A new todo: [" << todoData.todo << "] has added with index: [" << itemWidget->index << "]" <<
+			__FUNCTION__;
 	}
 
 	void TaskFlowView::updateCategoryList()
 	{
 		// Disable all after creation
 		const int count = ui.categoryList->count();
-		for(int i=0; i < count; ++i)
+		for (int i = 0; i < count; ++i)
 		{
 			QListWidgetItem* item = ui.categoryList->item(i);
 			CategoryListItem* catItem = qobject_cast<CategoryListItem*>(ui.categoryList->itemWidget(item));
@@ -269,8 +289,8 @@ namespace View
 		selectedItem->setSelected(true); // make this item selected as widget.
 		CategoryListItem* catItemSelected = qobject_cast<CategoryListItem*>(ui.categoryList->itemWidget(selectedItem));
 
-		emit categorySelected(catItemSelected); // This will trigger UI creation of to do items from presenter. This syncs with model.
-
+		emit categorySelected(catItemSelected);
+		// This will trigger UI creation of to do items from presenter. This syncs with model.
 	}
 
 	void TaskFlowView::clearTotoList()

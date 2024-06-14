@@ -147,11 +147,13 @@
     <ClCompile Include="src\presenters\TaskFlowPresenter.cpp" />
     <ClCompile Include="src\utilities\ThemeManager.cpp" />
     <ClCompile Include="src\views\CategoryListView.cpp" />
+    <ClCompile Include="src\views\ContextMenu.cpp" />
     <ClCompile Include="src\views\TaskFlowView.cpp" />
     <ClCompile Include="src\views\TestWidgetView.cpp" />
     <ClCompile Include="src\views\TodoListView.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <QtMoc Include="src\views\ContextMenu.h" />
     <QtMoc Include="src\views\TodoListView.h" />
     <QtMoc Include="src\models\DataManager.h" />
     <QtMoc Include="src\presenters\TaskFlowPresenter.h" />

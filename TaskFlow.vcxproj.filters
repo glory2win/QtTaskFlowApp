@@ -90,6 +90,9 @@
     <ClCompile Include="src\views\TodoListView.cpp">
       <Filter>Source Files\Views</Filter>
     </ClCompile>
+    <ClCompile Include="src\views\ContextMenu.cpp">
+      <Filter>Source Files\Views</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\utilities\ThemeManager.h">
@@ -113,6 +116,9 @@
       <Filter>Header Files\Presenters</Filter>
     </QtMoc>
     <QtMoc Include="src\views\TodoListView.h">
+      <Filter>Header Files\Views</Filter>
+    </QtMoc>
+    <QtMoc Include="src\views\ContextMenu.h">
       <Filter>Header Files\Views</Filter>
     </QtMoc>
   </ItemGroup>
