@@ -165,18 +165,12 @@ namespace View
 		ui.todoList->setItemWidget(item, itemWidget);
 
 		itemWidget->setTotoText(todoText);
+		// To do Item's id is where it is in the list, this will get the model's data too so assuming its position in the list and category's data are same.
+		itemWidget->index = ui.todoList->count() - 1;
+
+		qDebug() << "A new todo: [" << todoText<< "] has added with index: [" << itemWidget->index << "]" << __FUNCTION__;
 
 		emit todoAdded(m_selectedCategory->getCategoryName(), itemWidget->getTodoText());
-	}
-
-	void TaskFlowView::onTodoItemMarkedDone(bool done)
-	{
-
-	}
-
-	void TaskFlowView::onTodoItemMarkedImp(bool imp)
-	{
-
 	}
 
 	void TaskFlowView::onCategoryNameUpdated(const QString& rename)
@@ -188,16 +182,19 @@ namespace View
 	void TaskFlowView::onTodoTextUpdated(const QString& rename)
 	{
 		qDebug() << "Todo name has updated to: [" << rename << "] Func: " << __FUNCTION__;
+		
 	}
 
-	void TaskFlowView::onTodoDoneStatusUpdated(bool done)
+	void TaskFlowView::onTodoItemDoneStatusUpdated(int todoIndex, bool done)
 	{
-		qDebug() << "Category: " + m_selectedCategory->getCategoryName() << " todo id: ";
+		qDebug() << "Category: [" + m_selectedCategory->getCategoryName() << "] todo id: [" << todoIndex << "] with done status: [" << done << "]";
+		emit updateTodoDoneStatus(todoIndex, done);
 	}
 
-	void TaskFlowView::onTodoCheckStatusUpdated(bool imp)
+	void TaskFlowView::onTodoItemImpStatusUpdated(int todoIndex, bool imp)
 	{
-		qDebug() << "Category: " + m_selectedCategory->getCategoryName() << " check status";
+		qDebug() << "Category: [" + m_selectedCategory->getCategoryName() << "] todo id: [" << todoIndex << "] with imp status: [" << imp << "]";
+		updateTodoImpStatus(todoIndex, imp);
 	}
 
 	// *********************** PUBLIC FUNCTIONS ************************************
@@ -232,6 +229,9 @@ namespace View
 		itemWidget->setEditable(false);
 		item->setSelected(true);
 
+		itemWidget->index = ui.todoList->count() - 1;
+
+		qDebug() << "A new todo: [" << todoData.todo << "] has added with index: [" << itemWidget->index << "]" << __FUNCTION__;
 	}
 
 	void TaskFlowView::updateCategoryList()

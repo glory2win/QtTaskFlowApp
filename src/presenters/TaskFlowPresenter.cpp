@@ -13,6 +13,8 @@ namespace Presenter
 		connect(view, &TaskFlowView::newCategoryAdded, this, &TaskFlowPresenter::onNewCategoryAdded);
 		connect(view, &TaskFlowView::categorySelected, this, &TaskFlowPresenter::onCategorySelected);
 		connect(view, &TaskFlowView::todoAdded, this, &TaskFlowPresenter::onTodoAdded);
+		connect(view, &TaskFlowView::updateTodoDoneStatus, this, &TaskFlowPresenter::onUpdateTodoDoneStatus);
+		connect(view, &TaskFlowView::updateTodoImpStatus, this, &TaskFlowPresenter::onUpdateTodoImpStatus);
 	}
 
 	void TaskFlowPresenter::onNewCategoryAdded(const QString& name)
@@ -51,6 +53,17 @@ namespace Presenter
 		m_currCategoryData->items.append(todoData);
 
 		emit dataSaved();
+	}
+
+	void TaskFlowPresenter::onUpdateTodoDoneStatus(int todoIndex, bool done)
+	{
+		qDebug() << "Todo item index [" << todoIndex << "] done status has updated with [ " << done << "] status in the database and saved.";
+	}
+
+	void TaskFlowPresenter::onUpdateTodoImpStatus(int todoIndex, bool imp)
+	{
+		qDebug() << "Todo item index [" << todoIndex << "] imp status has updated with [ " << imp << "] status in the database and saved.";
+
 	}
 
 	void TaskFlowPresenter::onDataLoaded()

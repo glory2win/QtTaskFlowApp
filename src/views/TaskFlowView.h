@@ -34,12 +34,19 @@ namespace View
 		void newCategoryAdded(const QString& categoryName);
 		void categorySelected(const CategoryListItem* categoryItem);
 		void todoAdded(const QString& categoryName, const QString& todoText);
+		void updateTodoDoneStatus(int todoIndex, bool done); // Assuming the to do item has belongs to selected category.
+		void updateTodoImpStatus(int todoIndex, bool imp);
+
+		
 
 	public slots:
+		// Category item signals slot
 		void onCategoryNameUpdated(const QString& rename);
+
+		// To do item's signals slots
 		void onTodoTextUpdated(const QString& rename);
-		void onTodoDoneStatusUpdated(bool done);
-		void onTodoCheckStatusUpdated(bool imp);
+		void onTodoItemDoneStatusUpdated(int todoIndex, bool done);
+		void onTodoItemImpStatusUpdated(int todoIndex, bool imp);
 
 	private slots:
 		void onSettingBtnPressed();
@@ -50,8 +57,6 @@ namespace View
 		void onCategoryListItemClicked();
 
 		void onTodoItemAdded(const QString& todoText);
-		void onTodoItemMarkedDone(bool done);
-		void onTodoItemMarkedImp(bool imp);
 
 	private:
 		Ui::TaskFlowClass ui;

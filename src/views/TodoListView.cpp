@@ -54,8 +54,8 @@ namespace View
 		// ************* CONNECT UI ******************
 
 		connect(this, &TodoListItem::todoTextUpdated, mainView, &TaskFlowView::onTodoTextUpdated);
-		connect(this, &TodoListItem::todoDoneStatusUpdated, mainView, &TaskFlowView::onTodoDoneStatusUpdated);
-		connect(this, &TodoListItem::todoCheckStatusUpdated, mainView, &TaskFlowView::onTodoCheckStatusUpdated);
+		connect(this, &TodoListItem::todoDoneStatusUpdated, mainView, &TaskFlowView::onTodoItemDoneStatusUpdated);
+		connect(this, &TodoListItem::todoImpStatusUpdated, mainView, &TaskFlowView::onTodoItemImpStatusUpdated);
 
 		connect(m_todoLineEdit, &QLineEdit::editingFinished, [&]()
 		{
@@ -66,8 +66,7 @@ namespace View
 		connect(m_impCheck, &QCheckBox::checkStateChanged, [&]()
 		{
 			const bool isImp = m_impCheck->checkState() == Qt::CheckState::Checked;
-			emit todoCheckStatusUpdated(isImp);
-			qDebug() << "Marked as important " << __FUNCTION__;
+			emit todoImpStatusUpdated(index, isImp);
 		});
 
 		connect(m_completedCheck, &QCheckBox::checkStateChanged, [&]()
@@ -78,7 +77,7 @@ namespace View
 				                        ? ThemeManager::instance().strikeFont()
 				                        : ThemeManager::instance().itemFont());
 
-			emit todoDoneStatusUpdated(isDone);
+			emit todoDoneStatusUpdated(index, isDone);
 
 			// debug
 			QString debugResult = isDone ? "True" : "False";

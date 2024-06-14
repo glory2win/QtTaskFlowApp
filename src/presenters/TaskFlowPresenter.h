@@ -26,6 +26,8 @@ namespace Presenter
 		void onCategorySelected(const CategoryListItem* category);
 		void onCategoryNameChanged(const QString& rename);
 		void onTodoAdded(const QString& categoryName, const QString& todoText);
+		void onUpdateTodoDoneStatus(int todoIndex, bool done);
+		void onUpdateTodoImpStatus(int todoIndex, bool imp);
 		// Model
 		void onDataLoaded();
 

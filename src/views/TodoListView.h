@@ -40,16 +40,18 @@ namespace View
 
 		void setEditable(bool enabled) const;
 
+		int index;
+
+
 	signals:
 		void todoTextUpdated(const QString& rename);
-		void todoDoneStatusUpdated(bool done);
-		void todoCheckStatusUpdated(bool imp);
+		void todoDoneStatusUpdated(int todoIndex, bool done);
+		void todoImpStatusUpdated(int todoIndex,bool imp);
 
 	private:
 		QCheckBox* m_completedCheck;
 		TodoLineEdit* m_todoLineEdit;
 		QCheckBox* m_impCheck;
 
-		int m_id;
 	};
 }
