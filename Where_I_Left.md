@@ -2,10 +2,8 @@
 
 Features need to be implemented:
 <ol>
-    <li>find a way to identify which todo item has been clicked.
-    <li>sync todo item's important status
-    <li>sync todo item's done status
-    <li>fix the background of todo item
+    <li> clear list upon new category added and save that category
+    <li> handle "untitled" categories, if the same is already exists append with number and add that.
     
 </ol>
 
