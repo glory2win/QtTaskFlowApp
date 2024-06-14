@@ -2,8 +2,7 @@
 
 Features need to be implemented:
 <ol>
-    <li> clear list upon new category added and save that category
-    <li> handle "untitled" categories, if the same is already exists append with number and add that.
+    <li> Implement right click context menu
     
 </ol>
 
