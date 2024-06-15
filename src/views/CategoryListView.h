@@ -11,6 +11,12 @@ namespace View
 	// Forward declares.
 	class TaskFlowView;
 
+	enum class CategoryViewMode
+	{
+		Normal,
+		Editing
+	};
+
 	/* This file holds the definitions for custom QListWidget, QListWidgetItem and its children. */
 
 	/* QLineEdit needs to be extended inorder to call the focusOutEvent. */
@@ -39,11 +45,13 @@ namespace View
 
 		QString getCategoryName() const;
 		void setCategoryName(const QString& rename) const;
-		void setEditable(bool enabled) const;
+		void setEditable(bool enabled);
 		void setSelected(bool isSelected) const;
 
+		CategoryViewMode mode = CategoryViewMode::Normal;
+
 	signals:
-		void categoryNameUpdated(const QString& rename);
+		void categoryNameUpdated(CategoryListItem* category);
 
 	private:
 		QLabel* m_iconLabel;

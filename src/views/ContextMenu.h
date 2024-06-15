@@ -3,6 +3,8 @@
 #include <QWidget>
 #include <QMenu>
 
+#include "TaskFlowView.h"
+
 namespace View
 {
 	class ContextMenu : public QMenu
@@ -50,13 +52,8 @@ namespace View
 		Q_OBJECT
 
 	public:
-		explicit CategoryContextMenu(QWidget* parent);
+		explicit CategoryContextMenu(TaskFlowView* mainView);
 		~CategoryContextMenu() override = default;
-
-	private slots:
-		void onRenameList();
-		void onDeleteList();
-		void onDuplicateList();
 
 	private:
 

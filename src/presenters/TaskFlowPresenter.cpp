@@ -1,4 +1,5 @@
 #include "TaskFlowPresenter.h"
+#include <QMessageBox>
 
 namespace Presenter
 {
@@ -15,6 +16,7 @@ namespace Presenter
 		connect(view, &TaskFlowView::todoAdded, this, &TaskFlowPresenter::onTodoAdded);
 		connect(view, &TaskFlowView::updateTodoDoneStatus, this, &TaskFlowPresenter::onUpdateTodoDoneStatus);
 		connect(view, &TaskFlowView::updateTodoImpStatus, this, &TaskFlowPresenter::onUpdateTodoImpStatus);
+		connect(view, &TaskFlowView::categoryNameChanged, this, &TaskFlowPresenter::onCategoryNameChanged);
 
 		// To View Connections
 		connect(this, &TaskFlowPresenter::updateAllCategoryItemNames, m_view, &TaskFlowView::onUpdateAllCategoryNames);
@@ -36,8 +38,8 @@ namespace Presenter
 		}
 		m_model->categories.append(Data::Category{categoryName}); // Let's create the object directly in the list to avoid the need of temporary local variables.
 		list.append(categoryName); // add the newly created name too.
-		m_currCategoryData = &m_model->categories.last(); // Make sure only refer the latest obj from the list, don't refer any local variables as they will get destroyed after this function scope.		
-		
+		m_currCategoryData = &m_model->categories.last(); // Make sure only refer the latest obj from the list, don't refer any local variables as they will get destroyed after this function scope.
+
 		emit updateAllCategoryItemNames(list);
 	}
 
@@ -58,9 +60,26 @@ namespace Presenter
 		}
 	}
 
-	void TaskFlowPresenter::onCategoryNameChanged(const QString& rename)
+	void TaskFlowPresenter::onCategoryNameChanged(CategoryListItem* categoryItem, const QString& oldName)
 	{
+		// TODO check all category names if exists warn user to choose different
+		const QString& currName = categoryItem->getCategoryName();
+		for(const auto& category : m_model->categories)
+		{
+			if(category.name == currName) // compare with already applied ui's name.
+			{
+				categoryItem->setCategoryName(oldName); // reset to old name because the proposed new name is already in the list.
+				categoryItem->setEditable(false);
+				QString msg = QString("There is already a category with the same name: %1.\n Please choose different name!").arg(currName);
+				QMessageBox::information(m_view, "Duplicate Entry", "There is already a category with the same name.\n Please choose different name!");
+				return;
+			}
+		}
+		m_currCategoryData->name = categoryItem->getCategoryName();
+		categoryItem->setEditable(false);
+		emit dataSaved();
 	}
+
 
 	void TaskFlowPresenter::onTodoAdded(const QString& categoryName, const QString& todoText)
 	{
@@ -82,7 +101,7 @@ namespace Presenter
 			auto& todoData = m_currCategoryData->items[todoIndex];
 			todoData.isCompleted = done;
 			emit dataSaved();
-		}		
+		}
 	}
 
 	void TaskFlowPresenter::onUpdateTodoImpStatus(int todoIndex, bool imp)

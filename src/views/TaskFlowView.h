@@ -35,7 +35,7 @@ namespace View
 	signals:
 		// Signals for presenter
 		void newCategoryAdded(const QString& categoryName);
-		void categoryNameChanged(const QString& newCategoryName);
+		void categoryNameChanged(CategoryListItem* categoryItem, const QString& cachedCategoryName);
 
 		void categorySelected(const CategoryListItem* categoryItem);
 
@@ -43,17 +43,20 @@ namespace View
 		void updateTodoDoneStatus(int todoIndex, bool done); // Assuming the to do item has belongs to selected category.
 		void updateTodoImpStatus(int todoIndex, bool imp);
 
-		
 
 	public slots:
 		// Category item signals slot
-		void onCategoryNameUpdated(const QString& rename);
+		void onCategoryNameUpdated(CategoryListItem* category);
 		void onUpdateAllCategoryNames(QList<QString> list);
+		void onRenameCategoryRequested();
+		void onDeleteCategoryRequested();
+		void onDuplicateCategoryRequested();
 
 		// To do item's signals slots
 		void onTodoTextUpdated(const QString& rename);
 		void onTodoItemDoneStatusUpdated(int todoIndex, bool done);
 		void onTodoItemImpStatusUpdated(int todoIndex, bool imp);
+
 
 	private slots:
 		void onSettingBtnPressed();
@@ -75,5 +78,7 @@ namespace View
 
 		CategoryListItem* m_selectedCategory;
 		int m_selectedCategoryIndex;
+
+		QString m_categoryCachedName;
 	};
 }

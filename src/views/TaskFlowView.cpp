@@ -162,9 +162,11 @@ namespace View
 	{
 		QList<QListWidgetItem*> selection = ui.categoryList->selectedItems();
 		QListWidgetItem* selected = selection[0];
-		if (const CategoryListItem* categoryItem = qobject_cast<CategoryListItem*>(
+		if (CategoryListItem* categoryItem = qobject_cast<CategoryListItem*>(
 			ui.categoryList->itemWidget(selected)))
 		{
+			m_selectedCategoryIndex = ui.categoryList->indexFromItem(selected).column();
+			m_selectedCategory = categoryItem;
 			emit categorySelected(categoryItem);
 		}
 	}
@@ -198,15 +200,25 @@ namespace View
 		if (!item)
 			return;
 
-		ContextMenu* contextMenu = ContextMenu::instance(this);
-		contextMenu->exec(ui.categoryList->mapToGlobal(pos));
+		CategoryContextMenu contextMenu(this);
+		contextMenu.exec(ui.categoryList->mapToGlobal(pos));
 	}
 
 
-	void TaskFlowView::onCategoryNameUpdated(const QString& rename)
+	void TaskFlowView::onCategoryNameUpdated(CategoryListItem* category)
 	{
-		qDebug() << "Catgory name has updated to: [" << rename << "] Func: " << __FUNCTION__;
-		ui.categoryTitleLabel->setText(rename);
+		// TODO: set mode, normal
+		if(category->mode == CategoryViewMode::Editing)
+		{
+			emit categoryNameChanged(category, m_categoryCachedName);
+		}
+		else
+		{
+			category->setEditable(false);
+			ui.categoryTitleLabel->setText(category->getCategoryName());
+		}
+		qDebug() << "Category name has updated to: [" << category->getCategoryName() << "] Func: " << __FUNCTION__;
+
 	}
 
 	void TaskFlowView::onUpdateAllCategoryNames(QList<QString> list)
@@ -218,6 +230,27 @@ namespace View
 			CategoryListItem* catItem = qobject_cast<CategoryListItem*>(ui.categoryList->itemWidget(item));
 			catItem->setCategoryName(list[i]);
 		}
+	}
+
+	void TaskFlowView::onRenameCategoryRequested()
+	{
+		// 1. set the current category edit mode, cache its name, because if rename failed we will set that name back.
+		m_categoryCachedName = m_selectedCategory->getCategoryName();
+		qDebug() << "Renaming [" << m_categoryCachedName << "] list action";
+		m_selectedCategory->setEditable(true);
+		// Emit of signal will handle in onCategoryNameUpdate. because that is bound to Finished signal to lineEdit.
+	}
+
+	void TaskFlowView::onDeleteCategoryRequested()
+	{
+		qDebug() << "Delete list action";
+
+	}
+
+	void TaskFlowView::onDuplicateCategoryRequested()
+	{
+		qDebug() << "Move to list action";
+
 	}
 
 	void TaskFlowView::onTodoTextUpdated(const QString& rename)

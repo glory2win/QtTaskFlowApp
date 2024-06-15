@@ -57,8 +57,7 @@ namespace View
 		connect(this, &CategoryListItem::categoryNameUpdated, mainView, &TaskFlowView::onCategoryNameUpdated);
 		connect(m_categoryLineEdit, &QLineEdit::editingFinished, [&]()
 		{
-			setEditable(false);
-			emit categoryNameUpdated(m_categoryLineEdit->text()); // emit nameUpdated event when press return key.
+			emit categoryNameUpdated(this); // emit nameUpdated event when press return key.
 		});
 	}
 
@@ -74,7 +73,7 @@ namespace View
 	}
 
 	// Call when Rename option selected.
-	void CategoryListItem::setEditable(const bool enabled) const
+	void CategoryListItem::setEditable(const bool enabled)
 	{
 		if (m_categoryLineEdit)
 		{
@@ -85,6 +84,7 @@ namespace View
 				m_categoryLineEdit->setFocus();
 				m_categoryLineEdit->setFrame(true);
 				m_categoryLineEdit->setEnabled(true);
+				mode = CategoryViewMode::Editing;
 			}
 			else
 			{
@@ -92,6 +92,7 @@ namespace View
 				m_categoryLineEdit->clearFocus();
 				m_categoryLineEdit->setFrame(false);
 				m_categoryLineEdit->setEnabled(false);
+				mode = CategoryViewMode::Normal;
 			}
 		}
 	}
