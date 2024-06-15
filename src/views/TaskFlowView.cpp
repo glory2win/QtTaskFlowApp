@@ -86,6 +86,7 @@ namespace View
 		});
 
 		// Context menus
+		ui.categoryList->setContextMenuPolicy(Qt::CustomContextMenu);
 		connect(ui.categoryList, &QListWidget::customContextMenuRequested, this, &TaskFlowView::showCategoryContextMenu);
 	}
 
@@ -95,6 +96,10 @@ namespace View
 	void TaskFlowView::onSettingBtnPressed()
 	{
 		qDebug() << "[Settings] - Settings button pressed " << __FUNCTION__;
+
+		ContextMenu* contextMenu = ContextMenu::instance(this);
+		const QPoint& btnPos = ui.settingsBtn->pos();
+		contextMenu->exec(ui.settingsBtn->mapToGlobal(btnPos));
 	}
 
 	void TaskFlowView::onListOptionBtnPressed()
