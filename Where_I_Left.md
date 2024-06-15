@@ -12,6 +12,12 @@ Know bugs and issues:
 2. 
 
 
+Impl
+>> rename - done
+>> duplicate
+>> delete
+
 Rename Category:
 1. first cache the old name, and enable setEditable, and mode is editinging
 2. after hit enter emit rename mode with that category item and cahced old name
+
