@@ -44,4 +44,24 @@ namespace View
 		QAction* markAsDone;
 		QAction* moveToAnotherList;
 	};
+
+	class CategoryContextMenu : public QMenu
+	{
+		Q_OBJECT
+
+	public:
+		explicit CategoryContextMenu(QWidget* parent);
+		~CategoryContextMenu() override = default;
+
+	private slots:
+		void onRenameList();
+		void onDeleteList();
+		void onDuplicateList();
+
+	private:
+
+		QAction* renameList;
+		QAction* deleteList;
+		QAction* duplicateList;
+	};
 }

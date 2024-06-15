@@ -45,6 +45,7 @@ namespace View
 	}
 
 
+
 	ContextMenu* ContextMenu::instance(QWidget* parent)
 	{
 		if(!m_instance)
@@ -95,6 +96,38 @@ namespace View
 	}
 
 	void ContextMenu::onMoveToList()
+	{
+		qDebug() << "Move to list action";
+
+	}
+
+
+	// ********** CATEGORY CONTEXT MENU ****************
+
+	CategoryContextMenu::CategoryContextMenu(QWidget* parent)
+	{
+		renameList = addAction("Rename");
+		deleteList = addAction("Delete");
+		duplicateList = addAction("Duplicate");
+
+		connect(renameList, &QAction::triggered, this, &CategoryContextMenu::onRenameList);
+		connect(deleteList, &QAction::triggered, this, &CategoryContextMenu::onDeleteList);
+		connect(duplicateList, &QAction::triggered, this, &CategoryContextMenu::onDuplicateList);
+	}
+
+	void CategoryContextMenu::onRenameList()
+	{
+		qDebug() << "Move to list action";
+
+	}
+
+	void CategoryContextMenu::onDeleteList()
+	{
+		qDebug() << "Move to list action";
+
+	}
+
+	void CategoryContextMenu::onDuplicateList()
 	{
 		qDebug() << "Move to list action";
 
