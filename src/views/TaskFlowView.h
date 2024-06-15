@@ -57,6 +57,12 @@ namespace View
 		void onTodoItemDoneStatusUpdated(int todoIndex, bool done);
 		void onTodoItemImpStatusUpdated(int todoIndex, bool imp);
 
+		// To do context menu signal slots
+		void onTodoEditRequested();
+		void onTodoMarkDoneRequested();
+		void onTodoMarkImpRequested();
+		void onTodoDeleteRequested();
+
 
 	private slots:
 		void onSettingBtnPressed();

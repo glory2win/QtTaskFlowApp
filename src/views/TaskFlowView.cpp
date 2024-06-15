@@ -96,10 +96,6 @@ namespace View
 	void TaskFlowView::onSettingBtnPressed()
 	{
 		qDebug() << "[Settings] - Settings button pressed " << __FUNCTION__;
-
-		ContextMenu* contextMenu = ContextMenu::instance(this);
-		const QPoint& btnPos = ui.settingsBtn->pos();
-		contextMenu->exec(ui.settingsBtn->mapToGlobal(btnPos));
 	}
 
 	void TaskFlowView::onListOptionBtnPressed()
@@ -270,6 +266,26 @@ namespace View
 		qDebug() << "Category: [" + m_selectedCategory->getCategoryName() << "] todo id: [" << todoIndex <<
 			"] with imp status: [" << imp << "]";
 		updateTodoImpStatus(todoIndex, imp);
+	}
+
+	void TaskFlowView::onTodoEditRequested()
+	{
+
+	}
+
+	void TaskFlowView::onTodoMarkDoneRequested()
+	{
+
+	}
+
+	void TaskFlowView::onTodoMarkImpRequested()
+	{
+
+	}
+
+	void TaskFlowView::onTodoDeleteRequested()
+	{
+
 	}
 
 	// *********************** PUBLIC FUNCTIONS ************************************

@@ -7,46 +7,6 @@
 
 namespace View
 {
-	class ContextMenu : public QMenu
-	{
-		Q_OBJECT
-
-	public:
-		static ContextMenu* instance(QWidget* parent = nullptr);
-		void updateMenu(const QString& itemType);
-
-	private slots:
-		void onRename();
-		void onDelete();
-		void onDuplicate();
-
-		void onEdit();
-		void onComplete();
-		void onMarkImp();
-		void onMoveToList();
-
-	private:
-		explicit ContextMenu(QWidget* parent);
-		~ContextMenu() override = default;
-
-		static ContextMenu* m_instance;
-
-		void setupActions();
-
-		// Common actions
-		QAction* rename;
-		QAction* deleteItem;
-
-		// Category Item context options
-		QAction* duplicateList;
-
-		// To do item context options
-		QAction* edit;
-		QAction* markAsImportant;
-		QAction* markAsDone;
-		QAction* moveToAnotherList;
-	};
-
 	class CategoryContextMenu : public QMenu
 	{
 		Q_OBJECT
@@ -60,5 +20,20 @@ namespace View
 		QAction* renameList;
 		QAction* duplicateList;
 		QAction* deleteList;
+	};
+
+	class TodoContextMenu : public QMenu
+	{
+		Q_OBJECT
+
+	public:
+		explicit TodoContextMenu(TaskFlowView* mainView);
+		~TodoContextMenu() override = default;
+
+	private:
+		QAction* editTodo;
+		QAction* deleteTodo;
+		QAction* markDone;
+		QAction* markImp;
 	};
 }
