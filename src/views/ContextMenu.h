@@ -58,7 +58,7 @@ namespace View
 	private:
 
 		QAction* renameList;
-		QAction* deleteList;
 		QAction* duplicateList;
+		QAction* deleteList;
 	};
 }

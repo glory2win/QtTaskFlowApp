@@ -107,12 +107,13 @@ namespace View
 	CategoryContextMenu::CategoryContextMenu(TaskFlowView* mainView)  : QMenu(mainView)
 	{
 		renameList = addAction("Rename");
-		deleteList = addAction("Delete");
 		duplicateList = addAction("Duplicate");
+		addSeparator();
+		deleteList = addAction("Delete");
 
 		connect(renameList, &QAction::triggered, mainView, &TaskFlowView::onRenameCategoryRequested);
-		connect(deleteList, &QAction::triggered, mainView, &TaskFlowView::onDeleteCategoryRequested);
 		connect(duplicateList, &QAction::triggered, mainView, &TaskFlowView::onDuplicateCategoryRequested);
+		connect(deleteList, &QAction::triggered, mainView, &TaskFlowView::onDeleteCategoryRequested);
 
 	}
 }
