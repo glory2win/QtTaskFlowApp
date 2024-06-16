@@ -21,3 +21,5 @@ Rename Category:
 1. first cache the old name, and enable setEditable, and mode is editinging
 2. after hit enter emit rename mode with that category item and cahced old name
 
+Duplicate Category:
+1. New category, it will automatically add _dup then copy/create new todo from that selected list and mark it as selected.
