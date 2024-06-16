@@ -245,8 +245,8 @@ namespace View
 
 	void TaskFlowView::onDuplicateCategoryRequested()
 	{
-		qDebug() << "Move to list action";
-
+		qDebug() << "Duplicating [" << m_selectedCategory << "] list...";
+		emit duplicateCategory(m_selectedCategory);
 	}
 
 	void TaskFlowView::onTodoTextUpdated(const QString& rename)

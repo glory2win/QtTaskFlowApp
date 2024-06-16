@@ -17,6 +17,7 @@ namespace Presenter
 		connect(view, &TaskFlowView::updateTodoDoneStatus, this, &TaskFlowPresenter::onUpdateTodoDoneStatus);
 		connect(view, &TaskFlowView::updateTodoImpStatus, this, &TaskFlowPresenter::onUpdateTodoImpStatus);
 		connect(view, &TaskFlowView::categoryNameChanged, this, &TaskFlowPresenter::onCategoryNameChanged);
+		connect(view, &TaskFlowView::duplicateCategory, this, &TaskFlowPresenter::onDuplicateCategory);
 
 		// To View Connections
 		connect(this, &TaskFlowPresenter::updateAllCategoryItemNames, m_view, &TaskFlowView::onUpdateAllCategoryNames);
@@ -77,6 +78,24 @@ namespace Presenter
 		}
 		m_currCategoryData->name = categoryItem->getCategoryName();
 		categoryItem->setEditable(false);
+		emit dataSaved();
+	}
+
+	void TaskFlowPresenter::onDuplicateCategory(const CategoryListItem* categoryItem)
+	{
+		// Make a new category with supplied category name and copy all to do items.
+		const Data::Category* originalData = m_currCategoryData;
+		onNewCategoryAdded(originalData->name);
+		int count = originalData->items.count();
+		for(int i=0; i< count ; ++i)
+		{
+			const auto& [todo, isCompleted, isImportant] = originalData->items[i];
+			Data::TodoItemData todoData;
+			todoData.todo = todo;
+			todoData.isImportant = isImportant;
+			todoData.isCompleted = isCompleted;
+			m_currCategoryData->items.append(todoData); // After creating new category with the name, that newly created category becomes current one.
+		}
 		emit dataSaved();
 	}
 

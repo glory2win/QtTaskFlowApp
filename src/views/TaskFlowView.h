@@ -36,8 +36,8 @@ namespace View
 		// Signals for presenter
 		void newCategoryAdded(const QString& categoryName);
 		void categoryNameChanged(CategoryListItem* categoryItem, const QString& cachedCategoryName);
-
 		void categorySelected(const CategoryListItem* categoryItem);
+		void duplicateCategory(const CategoryListItem* categoryItem);
 
 		void todoAdded(const QString& categoryName, const QString& todoText);
 		void updateTodoDoneStatus(int todoIndex, bool done); // Assuming the to do item has belongs to selected category.
