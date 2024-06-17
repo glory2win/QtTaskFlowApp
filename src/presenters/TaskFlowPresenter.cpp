@@ -85,17 +85,17 @@ namespace Presenter
 	{
 		// Make a new category with supplied category name and copy all to do items.
 		const Data::Category* originalData = m_currCategoryData;
+		auto itemsToCopy = m_currCategoryData->items;
 		onNewCategoryAdded(originalData->name);
-		int count = originalData->items.count();
-		for(int i=0; i< count ; ++i)
+		for(const auto& elm : itemsToCopy)
 		{
-			const auto& [todo, isCompleted, isImportant] = originalData->items[i];
 			Data::TodoItemData todoData;
-			todoData.todo = todo;
-			todoData.isImportant = isImportant;
-			todoData.isCompleted = isCompleted;
-			m_currCategoryData->items.append(todoData); // After creating new category with the name, that newly created category becomes current one.
+			todoData.todo = elm.todo;
+			todoData.isImportant = elm.isImportant;
+			todoData.isCompleted = elm.isCompleted;
+			m_currCategoryData->items.append(todoData);
 		}
+		onDataLoaded();
 		emit dataSaved();
 	}
 
@@ -138,6 +138,7 @@ namespace Presenter
 	{
 		qDebug() << "Data has changed: [" << m_model->categories.count() << "] records found!";
 		// TODO: read the categories data and make the ui.
+		m_view->clearCategoryList();
 		for (const auto& category : m_model->categories)
 		{
 			m_view->addCategoryItem(category.name);

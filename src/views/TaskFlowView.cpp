@@ -347,7 +347,12 @@ namespace View
 		// This will trigger UI creation of to do items from presenter. This syncs with model.
 	}
 
-	void TaskFlowView::clearTotoList()
+	void TaskFlowView::clearCategoryList() const
+	{
+		ui.categoryList->clear();
+	}
+
+	void TaskFlowView::clearTotoList() const
 	{
 		ui.todoList->clear();
 	}

@@ -28,8 +28,8 @@ namespace View
 		void addTodoItem(const Model::Data::TodoItemData& todoData);
 
 		void updateCategoryList();
-
-		void clearTotoList();
+		void clearCategoryList() const;
+		void clearTotoList() const;
 
 
 	signals:
