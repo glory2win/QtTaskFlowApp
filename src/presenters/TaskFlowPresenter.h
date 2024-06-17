@@ -32,6 +32,9 @@ namespace Presenter
 		void onTodoAdded(const QString& categoryName, const QString& todoText);
 		void onUpdateTodoDoneStatus(int todoIndex, bool done);
 		void onUpdateTodoImpStatus(int todoIndex, bool imp);
+		void onDeleteTodo(TodoListItem* todoItem);
+		void updateTodoList(Data::Category& catData) const;
+
 		// Model
 		void onDataLoaded();
 

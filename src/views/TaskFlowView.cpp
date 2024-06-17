@@ -88,6 +88,9 @@ namespace View
 		// Context menus
 		ui.categoryList->setContextMenuPolicy(Qt::CustomContextMenu);
 		connect(ui.categoryList, &QListWidget::customContextMenuRequested, this, &TaskFlowView::showCategoryContextMenu);
+
+		ui.todoList->setContextMenuPolicy(Qt::CustomContextMenu);
+		connect(ui.todoList, &QListWidget::customContextMenuRequested, this, &TaskFlowView::showTodoContextMenu);
 	}
 
 
@@ -200,6 +203,19 @@ namespace View
 		contextMenu.exec(ui.categoryList->mapToGlobal(pos));
 	}
 
+	void TaskFlowView::showTodoContextMenu(const QPoint& pos)
+	{
+		QListWidgetItem* item = ui.todoList->itemAt(pos);
+		if (!item)
+			return;
+
+		m_selectedTodoItem = qobject_cast<TodoListItem*>(ui.todoList->itemWidget(item));
+		qDebug() << "Selected todo Index: " << m_selectedTodoItem->index << " in Category: " << m_selectedCategory->getCategoryName();
+
+		TodoContextMenu contextMenu(this);
+		contextMenu.exec(ui.todoList->mapToGlobal(pos));
+	}
+
 
 	void TaskFlowView::onCategoryNameUpdated(CategoryListItem* category)
 	{
@@ -286,7 +302,10 @@ namespace View
 
 	void TaskFlowView::onTodoDeleteRequested()
 	{
+		if (!m_selectedTodoItem)
+			return;
 
+		emit deleteTodo(m_selectedTodoItem);
 	}
 
 	// *********************** PUBLIC FUNCTIONS ************************************
@@ -350,7 +369,7 @@ namespace View
 		{
 			ui.todoList->clear();
 		}
-		
+
 		// This will trigger UI creation of to do items from presenter. This syncs with model.
 	}
 

@@ -6,6 +6,7 @@
 #include <QPushButton>
 #include <QPoint>
 #include "CategoryListView.h"
+#include "TodoListView.h"
 #include "models/DataManager.h"
 
 
@@ -43,6 +44,7 @@ namespace View
 		void todoAdded(const QString& categoryName, const QString& todoText);
 		void updateTodoDoneStatus(int todoIndex, bool done); // Assuming the to do item has belongs to selected category.
 		void updateTodoImpStatus(int todoIndex, bool imp);
+		void deleteTodo(TodoListItem* todoItem);
 
 
 	public slots:
@@ -77,6 +79,7 @@ namespace View
 
 	private:
 		void showCategoryContextMenu(const QPoint& pos);
+		void showTodoContextMenu(const QPoint& pos);
 
 	private:
 		Ui::TaskFlowClass ui;
@@ -85,7 +88,8 @@ namespace View
 
 		CategoryListItem* m_selectedCategory;
 		int m_selectedCategoryIndex;
-
 		QString m_categoryCachedName;
+
+		TodoListItem* m_selectedTodoItem;
 	};
 }

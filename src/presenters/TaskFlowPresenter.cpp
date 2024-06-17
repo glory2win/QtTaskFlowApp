@@ -19,6 +19,7 @@ namespace Presenter
 		connect(view, &TaskFlowView::categoryNameChanged, this, &TaskFlowPresenter::onCategoryNameChanged);
 		connect(view, &TaskFlowView::duplicateCategory, this, &TaskFlowPresenter::onDuplicateCategory);
 		connect(view, &TaskFlowView::deleteCategory, this, &TaskFlowPresenter::onDeleteCategory);
+		connect(view, &TaskFlowView::deleteTodo, this, &TaskFlowPresenter::onDeleteTodo);
 
 		// To View Connections
 		connect(this, &TaskFlowPresenter::updateAllCategoryItemNames, m_view, &TaskFlowView::onUpdateAllCategoryNames);
@@ -45,6 +46,15 @@ namespace Presenter
 		emit updateAllCategoryItemNames(list);
 	}
 
+	void TaskFlowPresenter::updateTodoList(Data::Category& catData) const
+	{
+		m_view->clearTotoList();
+		for (const auto& todo : catData.items)
+		{
+			m_view->addTodoItem(todo);
+		}
+	}
+
 	void TaskFlowPresenter::onCategorySelected(const CategoryListItem* category)
 	{
 		qDebug() << "[" << category->getCategoryName() << "] has selected" << __FUNCTION__;
@@ -53,11 +63,7 @@ namespace Presenter
 			if (catData.name == category->getCategoryName())
 			{
 				m_currCategoryData = &catData; // Cache this as selected category to add to do items later easily.
-				m_view->clearTotoList();
-				for (const auto& todo : catData.items)
-				{
-					m_view->addTodoItem(todo);
-				}
+				updateTodoList(catData);
 			}
 		}
 	}
@@ -157,6 +163,18 @@ namespace Presenter
 			todoData.isImportant = imp;
 			emit dataSaved();
 		}
+	}
+
+	void TaskFlowPresenter::onDeleteTodo(TodoListItem* todoItem)
+	{
+		qDebug() << "Todo with index: " << todoItem->index << " from " << m_currCategoryData->name << " is deleting..";
+		int index = todoItem->index;
+		if(index >=0 && index < m_currCategoryData->items.count())
+		{
+			m_currCategoryData->items.removeAt(index);
+		}
+		updateTodoList(*m_currCategoryData);
+		emit dataSaved();
 	}
 
 	void TaskFlowPresenter::onDataLoaded()
