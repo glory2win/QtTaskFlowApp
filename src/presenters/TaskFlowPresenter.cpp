@@ -18,6 +18,7 @@ namespace Presenter
 		connect(view, &TaskFlowView::updateTodoImpStatus, this, &TaskFlowPresenter::onUpdateTodoImpStatus);
 		connect(view, &TaskFlowView::categoryNameChanged, this, &TaskFlowPresenter::onCategoryNameChanged);
 		connect(view, &TaskFlowView::duplicateCategory, this, &TaskFlowPresenter::onDuplicateCategory);
+		connect(view, &TaskFlowView::deleteCategory, this, &TaskFlowPresenter::onDeleteCategory);
 
 		// To View Connections
 		connect(this, &TaskFlowPresenter::updateAllCategoryItemNames, m_view, &TaskFlowView::onUpdateAllCategoryNames);
@@ -97,6 +98,30 @@ namespace Presenter
 		}
 		onDataLoaded();
 		emit dataSaved();
+	}
+
+	void TaskFlowPresenter::onDeleteCategory(CategoryListItem* categoryItem)
+	{
+		int categoryIndex = -1;
+		for(int i=0; i < m_model->categories.count(); ++i)
+		{
+			if(m_model->categories[i].name == m_currCategoryData->name)
+			{
+				categoryIndex = i;
+				break;
+			}
+		}
+		if(categoryIndex != -1)
+		{
+			m_model->categories[categoryIndex].items.clear();
+			m_model->categories.removeAt(categoryIndex);
+			onDataLoaded();
+			emit dataSaved();
+		}
+		else
+		{
+			qWarning() << "Unable to find the correct category with the name: [" << m_currCategoryData->name << "]" << __FUNCTION__;
+		}
 	}
 
 

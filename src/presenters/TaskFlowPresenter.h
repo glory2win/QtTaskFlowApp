@@ -27,6 +27,7 @@ namespace Presenter
 		void onCategorySelected(const CategoryListItem* category);
 		void onCategoryNameChanged(CategoryListItem* categoryItem, const QString& oldName);
 		void onDuplicateCategory(const CategoryListItem* categoryItem);
+		void onDeleteCategory(CategoryListItem* categoryItem);
 
 		void onTodoAdded(const QString& categoryName, const QString& todoText);
 		void onUpdateTodoDoneStatus(int todoIndex, bool done);

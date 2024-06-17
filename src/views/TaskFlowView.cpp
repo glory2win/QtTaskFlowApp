@@ -239,7 +239,8 @@ namespace View
 
 	void TaskFlowView::onDeleteCategoryRequested()
 	{
-		qDebug() << "Delete list action";
+		qDebug() << "Deleting [" << m_selectedCategory << "] list...";
+		emit deleteCategory(m_selectedCategory);
 
 	}
 
