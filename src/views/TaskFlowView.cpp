@@ -340,11 +340,17 @@ namespace View
 		}
 
 		// Now select one list from either last selection or last updated one or just select top one.
-		QListWidgetItem* selectedItem = ui.categoryList->item(0);
-		selectedItem->setSelected(true); // make this item selected as widget.
-		CategoryListItem* catItemSelected = qobject_cast<CategoryListItem*>(ui.categoryList->itemWidget(selectedItem));
-
-		emit categorySelected(catItemSelected);
+		if (QListWidgetItem* selectedItem = ui.categoryList->item(0))
+		{
+			selectedItem->setSelected(true); // make this item selected as widget.
+			CategoryListItem* catItemSelected = qobject_cast<CategoryListItem*>(ui.categoryList->itemWidget(selectedItem));
+			emit categorySelected(catItemSelected);
+		}
+		else // after deleting all categories or start with empty make sure the to do list also cleared out.
+		{
+			ui.todoList->clear();
+		}
+		
 		// This will trigger UI creation of to do items from presenter. This syncs with model.
 	}
 
