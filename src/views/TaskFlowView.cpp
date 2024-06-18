@@ -155,6 +155,7 @@ namespace View
 			}
 			catItem->setSelected(item->isSelected());
 		}
+		ui.todoItemInput->setFocus();
 	}
 
 	void TaskFlowView::onCategoryListItemClicked()
