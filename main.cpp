@@ -27,7 +27,7 @@ int main(int argc, char* argv[])
 	View::TaskFlowView flowWindow;
 	Presenter::TaskFlowPresenter controller(&dataManager, &flowWindow);
 
-	dataManager.loadFromJson("data/sample.json");
+	dataManager.loadFromJson("data.json");
 	QString debugStr = dataManager.toString();
 	qDebug() << "data: " << debugStr;
 

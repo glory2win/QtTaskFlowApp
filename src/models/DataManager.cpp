@@ -1,8 +1,10 @@
 #include "DataManager.h"
 
+#include <QApplication>
 #include <QFile>
 #include <QByteArray>
 #include <QJsonValue>
+#include <QMessageBox>
 #include <sstream>
 
 namespace Model
@@ -110,17 +112,47 @@ namespace Model
 
 	void DataManager::loadFromJson(const QString& filePath)
 	{
-		if (!QFile::exists(filePath))
-		{
-			qWarning() << "File not found at " << filePath;
-			return;
-		}
-
 		QFile file(filePath);
 
-		if (!file.open(QIODeviceBase::ReadOnly))
+		if (!file.exists(filePath))
+		{
+			if (file.open(QIODevice::WriteOnly))
+			{
+				QTextStream out(&file);
+				out << R"({
+					    "categories": [
+					        {
+					            "items": [
+					                {
+					                    "done": true,
+					                    "imp": false,
+					                    "todo": "sample todo item"
+					                }
+					            ],
+					            "name": "Sample List",
+					            "selected": false
+					        }
+					    ]
+					}
+					)";
+
+				qDebug() << "File created successfully:" << filePath;
+			}
+			else
+			{
+				file.close();
+				QMessageBox::warning(nullptr, "File Write Error",
+				                     "Unable to write the file!, exiting application, sorry!");
+				return;
+			}
+		}
+		else if (!file.open(QIODeviceBase::ReadOnly))
 		{
 			qWarning() << "Couldn't open the file for read at " << filePath;
+			file.close();
+			QMessageBox::warning(nullptr, "File Read Error",
+			                     "Unable to read the file!, exiting application, sorry!");
+			QApplication::quit();
 			return;
 		}
 
@@ -143,6 +175,9 @@ namespace Model
 		else
 		{
 			qWarning() << "Unable to read the JSON document, it may be null or not an object!";
+			QMessageBox::warning(nullptr, "File Parse Error",
+			                     "Unable to read the file!, exiting application, sorry!");
+			QApplication::quit();
 		}
 	}
 
