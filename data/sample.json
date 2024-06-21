@@ -3,48 +3,22 @@
         {
             "items": [
                 {
-                    "done": true,
-                    "imp": false,
-                    "todo": "apple"
-                },
-                {
-                    "done": true,
-                    "imp": false,
-                    "todo": "banana"
-                },
-                {
                     "done": false,
-                    "imp": true,
-                    "todo": "orange"
+                    "imp": false,
+                    "todo": "one"
                 },
                 {
                     "done": false,
                     "imp": false,
-                    "todo": "test"
+                    "todo": "two"
+                },
+                {
+                    "done": false,
+                    "imp": false,
+                    "todo": "three"
                 }
             ],
-            "name": "Groceries",
-            "selected": false
-        },
-        {
-            "items": [
-                {
-                    "done": true,
-                    "imp": false,
-                    "todo": "italy"
-                },
-                {
-                    "done": true,
-                    "imp": false,
-                    "todo": "norway"
-                },
-                {
-                    "done": false,
-                    "imp": true,
-                    "todo": "denmark"
-                }
-            ],
-            "name": "Travel",
+            "name": "first",
             "selected": false
         }
     ]

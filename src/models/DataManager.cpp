@@ -90,14 +90,42 @@ namespace Model
 	{
 	}
 
-	void DataManager::saveToJson(const QString& filePath)
+	QString DataManager::dataFilePath = "data/data.json";
+
+	void DataManager::checkAndCreateFile(const QString& filePath)
 	{
-		if (!QFile::exists(filePath))
-		{
-			qWarning() << "File not found at " << filePath;
+		if (QFile::exists(filePath))
 			return;
+
+		QFile file(filePath);
+
+		if (file.open(QIODevice::WriteOnly))
+		{
+			
+			QTextStream out(&file);
+			out << R"({"categories": []})";
+
+			qDebug() << "File created successfully:" << filePath;
+			
+
+			Data::Category category;
+			category.name = "TestCategory";
+			const Data::TodoItemData todo("simple todo", false, false);
+			category.items.append(todo);
+			categories.append(category);
+			saveToJson(filePath);
+		}
+		else
+		{
+			QMessageBox::warning(nullptr, "File Write Error",
+				"Unable to write the file!, exiting application, sorry!");
 		}
 
+		file.close();
+	}
+
+	void DataManager::saveToJson(const QString& filePath)
+	{
 		QFile file(filePath);
 		if (!file.open(QIODeviceBase::WriteOnly))
 		{
@@ -112,9 +140,11 @@ namespace Model
 
 	void DataManager::loadFromJson(const QString& filePath)
 	{
+		checkAndCreateFile(filePath);
+
 		QFile file(filePath);
 
-		if (!file.exists(filePath))
+		/*if (!file.exists(filePath))
 		{
 			if (file.open(QIODevice::WriteOnly))
 			{
@@ -145,40 +175,43 @@ namespace Model
 				                     "Unable to write the file!, exiting application, sorry!");
 				return;
 			}
-		}
-		else if (!file.open(QIODeviceBase::ReadOnly))
-		{
-			qWarning() << "Couldn't open the file for read at " << filePath;
-			file.close();
-			QMessageBox::warning(nullptr, "File Read Error",
-			                     "Unable to read the file!, exiting application, sorry!");
-			QApplication::quit();
-			return;
-		}
+		}*/
 
-		const QByteArray data = file.readAll();
-		QJsonDocument jsonDoc = QJsonDocument::fromJson(data);
-		if (!jsonDoc.isNull() && jsonDoc.isObject())
+		if(file.open(QIODevice::ReadOnly))
 		{
-			const QJsonObject& jsonObj = jsonDoc.object();
-			const QJsonValue& jsonValue = jsonObj.value("categories");
-			const QJsonArray& jsonArray = jsonValue.toArray();
-			categories.clear();
-			for (const auto elm : jsonArray)
+			const QByteArray data = file.readAll();
+			QJsonDocument jsonDoc = QJsonDocument::fromJson(data);
+			if (!jsonDoc.isNull() && jsonDoc.isObject())
 			{
-				Data::Category category;
-				category.fromJson(elm.toObject());
-				categories.append(category);
+				const QJsonObject& jsonObj = jsonDoc.object();
+				const QJsonValue& jsonValue = jsonObj.value("categories");
+				const QJsonArray& jsonArray = jsonValue.toArray();
+				categories.clear();
+				for (const auto elm : jsonArray)
+				{
+					Data::Category category;
+					category.fromJson(elm.toObject());
+					categories.append(category);
+				}
+				emit dataChanged();
 			}
-			emit dataChanged();
+			else
+			{
+				qWarning() << "Unable to read the JSON document, it may be null or not an object!";
+				QMessageBox::warning(nullptr, "File Parse Error",
+					"Unable to read the file!, exiting application, sorry!");
+			}
+
 		}
 		else
 		{
-			qWarning() << "Unable to read the JSON document, it may be null or not an object!";
-			QMessageBox::warning(nullptr, "File Parse Error",
-			                     "Unable to read the file!, exiting application, sorry!");
-			QApplication::quit();
+			qWarning() << "Couldn't open the file for read at " << filePath;
+			QMessageBox::warning(nullptr, "File Read Error",
+				"Unable to read the file!, exiting application, sorry!");
+
 		}
+
+		file.close();
 	}
 
 	QString DataManager::toString() const
@@ -197,7 +230,7 @@ namespace Model
 
 	void DataManager::onDataSaved()
 	{
-		saveToJson("data/sample.json");
+		saveToJson(DataManager::dataFilePath);
 		qDebug() << "Json file has been updated at: data/sample.json" << __FUNCTION__;
 	}
 

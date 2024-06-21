@@ -47,6 +47,9 @@ namespace Model
 		~DataManager() override = default;
 		QList<Data::Category> categories;
 
+		static QString dataFilePath;
+
+		void checkAndCreateFile(const QString& filePath);
 		void saveToJson(const QString& filePath);
 		void loadFromJson(const QString& filePath);
 
