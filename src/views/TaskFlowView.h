@@ -38,8 +38,8 @@ namespace View
 		void newCategoryAdded(const QString& categoryName);
 		void categoryNameChanged(CategoryListItem* categoryItem, const QString& cachedCategoryName);
 		void categorySelected(const CategoryListItem* categoryItem);
-		void duplicateCategory(const CategoryListItem* categoryItem);
-		void deleteCategory(CategoryListItem* categoryItem);
+		void duplicateCategory(); // Assuming the selected category is going to be duplicated.
+		void deleteCategory(); // Same
 
 		void todoAdded(const QString& categoryName, const QString& todoText);
 		void updateTodoDoneStatus(int todoIndex, bool done); // Assuming the to do item has belongs to selected category.

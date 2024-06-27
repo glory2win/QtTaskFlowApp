@@ -26,8 +26,8 @@ namespace Presenter
 		void onNewCategoryAdded(const QString& name);
 		void onCategorySelected(const CategoryListItem* category);
 		void onCategoryNameChanged(CategoryListItem* categoryItem, const QString& oldName);
-		void onDuplicateCategory(const CategoryListItem* categoryItem);
-		void onDeleteCategory(CategoryListItem* categoryItem);
+		void onDuplicateCategory(); // Assuming the selected (right-clicked) category is going to be duplicated.
+		void onDeleteCategory(); // Same
 
 		void onTodoAdded(const QString& categoryName, const QString& todoText);
 		void onUpdateTodoDoneStatus(int todoIndex, bool done);
@@ -42,6 +42,6 @@ namespace Presenter
 		DataManager* m_model;
 		TaskFlowView* m_view;
 
-		Data::Category* m_currCategoryData;
+		Data::Category* m_currCategoryData = nullptr;
 	};
 }

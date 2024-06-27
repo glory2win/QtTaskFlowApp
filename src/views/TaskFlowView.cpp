@@ -257,14 +257,14 @@ namespace View
 	void TaskFlowView::onDeleteCategoryRequested()
 	{
 		qDebug() << "Deleting [" << m_selectedCategory << "] list...";
-		emit deleteCategory(m_selectedCategory);
+		emit deleteCategory();
 
 	}
 
 	void TaskFlowView::onDuplicateCategoryRequested()
 	{
 		qDebug() << "Duplicating [" << m_selectedCategory << "] list...";
-		emit duplicateCategory(m_selectedCategory);
+		emit duplicateCategory();
 	}
 
 	void TaskFlowView::onTodoTextUpdated(const QString& rename)
