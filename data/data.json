@@ -1,14 +1,5 @@
-{"categories": []}: [
-        {
-            "items": [
-                {
-                    "done": false,
-                    "imp": false,
-                    "todo": "simple todo"
-                }
-            ],
-            "name": "TestCategory",
-            "selected": true
-        }
+{
+    "categories": [
+
     ]
 }
