@@ -136,6 +136,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <QtRcc Include="TaskFlow.qrc" />
+    <QtUic Include="Settings.ui" />
     <QtUic Include="TaskFlow.ui" />
     <None Include="TaskFlow.ico" />
     <QtUic Include="TestWidget.ui" />
@@ -148,11 +149,13 @@
     <ClCompile Include="src\utilities\ThemeManager.cpp" />
     <ClCompile Include="src\views\CategoryListView.cpp" />
     <ClCompile Include="src\views\ContextMenu.cpp" />
+    <ClCompile Include="src\views\SettingsView.cpp" />
     <ClCompile Include="src\views\TaskFlowView.cpp" />
     <ClCompile Include="src\views\TestWidgetView.cpp" />
     <ClCompile Include="src\views\TodoListView.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\views\SettingsView.h" />
     <QtMoc Include="src\views\ContextMenu.h" />
     <QtMoc Include="src\views\TodoListView.h" />
     <QtMoc Include="src\models\DataManager.h" />

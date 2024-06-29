@@ -64,6 +64,9 @@
     <QtUic Include="TestWidget.ui">
       <Filter>UI</Filter>
     </QtUic>
+    <QtUic Include="Settings.ui">
+      <Filter>UI</Filter>
+    </QtUic>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\utilities\ThemeManager.cpp">
@@ -93,10 +96,16 @@
     <ClCompile Include="src\views\ContextMenu.cpp">
       <Filter>Source Files\Views</Filter>
     </ClCompile>
+    <ClCompile Include="src\views\SettingsView.cpp">
+      <Filter>Source Files\Views</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\utilities\ThemeManager.h">
       <Filter>Header Files\Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="src\views\SettingsView.h">
+      <Filter>Header Files\Views</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

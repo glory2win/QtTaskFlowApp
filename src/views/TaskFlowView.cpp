@@ -99,6 +99,7 @@ namespace View
 	void TaskFlowView::onSettingBtnPressed()
 	{
 		qDebug() << "[Settings] - Settings button pressed " << __FUNCTION__;
+		QMessageBox::information(this, "Settings", "Settings window here");
 	}
 
 	void TaskFlowView::onListOptionBtnPressed()
